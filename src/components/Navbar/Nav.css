@@ -1,0 +1,19 @@
+.navbar{
+    background-color: #362C28;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbarBrand{
+    color: #8D8E6F;
+}
+
+.nav-middle{
+    color: white;
+}
+
+.nav-right{
+    justify-content: right;
+    color: white;
+}

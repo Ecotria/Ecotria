@@ -1,0 +1,25 @@
+Direcciones API
+
+
+url: http://81.4.100.21:4000/ecotria_api/user-create
+tipo: post
+
+/user-login/
+url:
+tipo: post
+
+route.post('/datosrespo-create', decodeApply.autenticacion, DatosRepControll.createDatosResponsable);
+route.get('/datosrespo-view/', decodeApply.autenticacion, DatosRepControll.viewMyDatosResponsable);
+route.get('/datosrespo-lists/', decodeApply.autenticacion, DatosRepControll.listsDatosResponsable);
+route.put('/datosrespo-update/:_id', decodeApply.autenticacion, DatosRepControll.updateDatosResponsable);
+
+sus.suscriptorId =  params.suscriptorId //req.suscriber._id;
+        sus.PrimerNombre = params.PrimerNombre
+        sus.Segundonombre = params.Segundonombre
+        sus.ApellidoPaterno = params.ApellidoPaterno
+        sus.ApellidoMatero = params.ApellidoMatero
+        sus.ApellidoCasado = params.ApellidoCasado
+        sus.CedulaPasaporte = params.CedulaPasaporte
+        sus.RepresentanteLegal = params.RepresentanteLegal
+        sus.DV = params.PrimerNDVombre
+        sus.Nacionalidad = params.Nacionalidad
