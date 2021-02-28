@@ -45,7 +45,7 @@ class RegisterDataPage extends React.Component {
         this.setState({ submitted: true });
         const { user } = this.state;
         if (user.nombre && user.apellido && user.correo && user.contrasena) {
-            this.props.register(user);
+            this.props.registerdata(user);
         }
     }
 
@@ -101,7 +101,7 @@ function mapState(state) {
 }
 
 const actionCreators = {
-    register: userActions.register
+    registerdata: userActions.registerdata
 }
 
 const connectedRegisterDataPage = connect(mapState, actionCreators)(RegisterDataPage);

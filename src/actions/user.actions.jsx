@@ -2,15 +2,26 @@ import { userConstants } from '../constants';
 import { userService } from '../services';
 import { alertActions } from './';
 import { history } from '../helpers';
+import { Redirect } from 'react'
 
-export const userActions = {
+export let userActions = {
     login,
     logout,
     register,
     registerdata,
     createpost,
+    getallpost
     
 };
+
+function getallpost(){
+    userService.getAll()
+    return { type: userConstants.GETALLPOST }
+
+   /* function request(allPost) { return { type: userConstants.GETALL_REQUEST, allPost } }
+    function success(allPost) { return { type: userConstants.GETALL_SUCCESS, allPost } }
+    function failure(error) { return { type: userConstants.GETALL_FAILURE, error } }*/
+}
 
 function login(username, password) {
     return dispatch => {
@@ -47,6 +58,8 @@ function register(user) {
             .then(
                 user => { 
                     dispatch(success());
+                    alert("trying redirect");
+                    <Redirect to="/login" />
                     history.push('/registerdata');
                     dispatch(alertActions.success('Registration successful'));
                 },

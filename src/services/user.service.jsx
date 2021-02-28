@@ -9,7 +9,7 @@ export const userService = {
     getAll,
     getById,
     update,
-    delete: _delete
+    createpost,
 };
 
 function login(correo, contrasena) {
@@ -26,6 +26,7 @@ function login(correo, contrasena) {
             localStorage.setItem('ObjectData', JSON.stringify(_user));
             localStorage.setItem('user', JSON.stringify(_user.nombre));
             localStorage.setItem('token', JSON.stringify(user.token) )
+            localStorage.setItem('subscriberID', JSON.stringify(user.subsciberID))
             return user;
         });
 }
@@ -36,12 +37,19 @@ function logout() {
 }
 
 function getAll() {
+    var token = localStorage.getItem('token')
     const requestOptions = {
         method: 'GET',
-        headers: authHeader()
+        headers: { 'Content-Type': 'application/json',  'Authorization': token },
     };
 
-    return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse);
+    return fetch(`${config.apipath}${config.user.getallpost}`, requestOptions)
+    .then(handleResponse)
+    .then(post => {
+        var _post = post.data
+        localStorage.setItem('PostArray', JSON.stringify(_post))
+        console.log(typeof localStorage.getItem('PostArray'))
+    });
 }
 
 function getById(id) {
@@ -74,6 +82,16 @@ function registerdata(user) {
     return fetch(`${config.apipath}${config.user.createuserdata}`, requestOptions).then(handleResponse); 
 }
 
+function createpost(post) {
+    const requestOptions = {
+        method: 'POST',
+        headers: { ...authHeader(), 'Content-Type': 'application/json'},
+        body: JSON.stringify(post)
+        }
+    
+    return fetch(`${config.apipath}${config.user.createpost}`, requestOptions).then(handleResponse);
+}
+
 function update(user) {
     const requestOptions = {
         method: 'PUT',
@@ -84,15 +102,6 @@ function update(user) {
     return fetch(`${config.apiUrl}/users/${user.id}`, requestOptions).then(handleResponse);;
 }
 
-// prefixed function name with underscore because delete is a reserved word in javascript
-function _delete(id) {
-    const requestOptions = {
-        method: 'DELETE',
-        headers: authHeader()
-    };
-
-    return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
-}
 
 function handleResponse(response) {
     return response.text().then(text => {

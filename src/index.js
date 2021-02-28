@@ -8,7 +8,7 @@ import { store } from './helpers';
 import reportWebVitals from './reportWebVitals';
 
 render(
-  <BrowserRouter>
+  <BrowserRouter >
    <Provider store={store}>
       <App/>
     </Provider>

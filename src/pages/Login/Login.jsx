@@ -4,6 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { userActions } from '../../actions';
 import './Login.css'
+import { userService } from '../../services'
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -20,6 +21,8 @@ class LoginPage extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+
+        userService.getAll()
     }
 
     handleChange(e) {
