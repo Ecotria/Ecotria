@@ -1,0 +1,42 @@
+.home{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    background-color: #F0F2F5;
+}
+.sidebar{
+    flex: 15%;
+}
+
+.feed{
+    display: grid;
+    padding: 30px 150px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ad{
+    flex: 20%;
+    padding: 10px;
+}
+
+.ad>img{
+    width: 100%;
+}
+
+
+
+.sidebar-row{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.sidebar-row:hover{
+    background-color: #FF9933;
+    border-radius: 12px;
+}
+
