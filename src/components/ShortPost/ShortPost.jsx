@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
   
   return  (
     <div className="cards">
-    { post.map((post, index) => (
+    { post.slice(0,3).map((post, index) => (
       <div className="card-item" key={index}>
           <Card className={classes.root}>
             <CardHeader

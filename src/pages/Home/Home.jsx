@@ -6,12 +6,13 @@ import ShortPostFeed from "../../components/ShortPost/ShortPostFeed";
 import "./Home.css";
 import { userActions } from '../../actions';
 import { userService } from '../../services'
+import { Avatar } from '@material-ui/core'
+
 
 class HomePage extends React.Component {
 
   constructor(props) {
     super(props);
-
        userService.getAll()
 }
   
@@ -20,7 +21,7 @@ class HomePage extends React.Component {
     return(
       <div className="home">
         <div className="sidebar">
-          <div className="sidebar-row">User name goes here</div>
+          <div className="sidebar-row"><Avatar/>User name goes here</div>
           <div className="sidebar-row">
             <Link to="/admin">Contactos</Link>
           </div>
@@ -28,6 +29,7 @@ class HomePage extends React.Component {
           <div className="sidebar-row">Mercado</div>
           <div className="sidebar-row">Publicar</div>
           <div className="sidebar-row">Favoritos</div>
+          <div className="sidebar-row">Noticias</div>
         </div>
         
         <div className="feed">
