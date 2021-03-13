@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useDispatch } from 'react';
 import './ShortPost.css'
 import { userService } from '../../services'
 
 import { makeStyles } from '@material-ui/core/styles';
+import Pagination from '@material-ui/lab/Pagination';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -49,61 +50,99 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
- function ShortPost() {
+
+
+function ShortPost() {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [currentPage, setPageNumber] = useState(0);
-  const [postsLimit, setPostsLimit] = useState(0);
-  userService.getPostPage(0,5);
- 
+  const [postsLimit, setPostsLimit] = useState(5);
+  const [post, setPost] = useState([]);
+  
+  useEffect( () => {
+    const fetchPost = async () =>{
+      const result = await userService.getPostPage(currentPage,postsLimit);
+      setPost(result.data.data);
+    };
+    fetchPost();
+  },[currentPage]);
+
+  // loadpost = JSON.parse(userService.getPostPage(currentPage,postsLimit));
+  // console.log(loadpost);
+  
+  // var unparsedpost = localStorage.getItem('PostPageArray');
+  // // var post = loadpost;
+  // var post = JSON.parse(unparsedpost);
+  var total = localStorage.getItem('Total Posts');
+  var pagemaxindex = parseInt(total/postsLimit);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
-  var unparsedpost = localStorage.getItem('PostPageArray');
-  var post = JSON.parse(unparsedpost);
+  const handlePagination = (event, value) =>{
+    setPageNumber(value);
+  };
 
   
-  return  (
-    <div className="cards">
-    { post.map((post, index) => (
-      <div className="card-item" key={index}>
-          <Card className={classes.root}>
-            <CardHeader
-              avatar={
-                <Avatar aria-label="recipe" className={classes.avatar}>
-                  Eco
-                </Avatar>
-              }
-              action={
-                <IconButton aria-label="settings">
-                  <MoreVertIcon />
-                </IconButton>
-              }
-              title={post.titlePost}
-              subheader={post.catergory}
-            />
-            <CardMedia
-              className={classes.media}
-              image="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Agricultural_machinery.jpg/1200px-Agricultural_machinery.jpg"
-              title="Industria Agrícola"
-            />
-            <CardContent>
-              <Typography variant="body2" color="textSecondary" component="p">
-              <h3>{post.descriptionPost}</h3>
-              <h3>{post.price}</h3>
-              </Typography>
-            </CardContent>
-            
-        </Card>
-      </div>
-    ))}
 
-  </div>
-  )
+  if(post === null){
+    return (
+      <div className="nulldata">
+        ...Loading...
+      </div>
+    )
+  }
+
+  else{
+
+    return  (
+      <div className="cards">
+      { post.map((post, index) => (
+        <div className="card-item" key={index}>
+            <Card className={classes.root}>
+              <CardHeader
+                avatar={
+                  <Avatar aria-label="recipe" className={classes.avatar}>
+                    Eco
+                  </Avatar>
+                }
+                action={
+                  <IconButton aria-label="settings">
+                    <MoreVertIcon />
+                  </IconButton>
+                }
+                title={post.titlePost}
+                subheader={post.catergory}
+              />
+              <CardMedia
+                className={classes.media}
+                image="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Agricultural_machinery.jpg/1200px-Agricultural_machinery.jpg"
+                title="Industria Agrícola"
+              />
+              <CardContent>
+                <Typography variant="body2" color="textSecondary" component="p">
+                <h3>{post.descriptionPost}</h3>
+                <h3>{post.price}</h3>
+                </Typography>
+              </CardContent>
+              
+          </Card>
+  
+        </div>
+      ))}
+  
+      <div className="pagination">
+       <Pagination page={currentPage} onChange={handlePagination} count={pagemaxindex} defaultPage={1} showFirstButton showLastButton />
+      </div>
+  
+    </div>
+    )
+
+  }
+
+  
+            
 }
    
-
-
 export default ShortPost;

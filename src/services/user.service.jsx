@@ -1,5 +1,6 @@
 import config from '../paths/paths';
 import { authHeader } from '../helpers';
+import axios from 'axios';
 
 export const userService = {
     login,
@@ -36,21 +37,34 @@ function logout() {
     localStorage.removeItem('user');
 }
 
-function getPostPage(currentPage,postsLimit) {
-    // var token = localStorage.getItem('token')
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ currentPage, postsLimit })
-    };
+// function getPostPage(currentPage,postsLimit) {
+//     // var token = localStorage.getItem('token')
+//     const requestOptions = {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify({ currentPage, postsLimit })
+//     };
 
-    return fetch(`${config.apipath}${config.user.getpostpage}`, requestOptions)
-    .then(handleResponse)
-    .then(post => {
-        var _post = post.data
-        localStorage.setItem('PostPageArray', JSON.stringify(_post))
-    });
-}
+//     return fetch(`${config.apipath}${config.user.getpostpage}`, requestOptions)
+//     .then(handleResponse)
+//     .then(post => {
+//         var _post = post.data
+//         localStorage.setItem('PostPageArray', JSON.stringify(_post))
+//         return post;
+//     });
+// }
+
+async function getPostPage(currentPagenum,postsLimitnum){
+    return await axios.post(`${config.apipath}${config.user.getpostpage}`, { currentPage: currentPagenum, postsLimit: postsLimitnum }, { headers: {'Content-Type': 'application/json'} })
+        .then(res => {
+            let _post = res.data.data
+            let _total = res.data.total
+            localStorage.setItem('PostPageArray', JSON.stringify(_post))
+            localStorage.setItem('Total Posts', JSON.stringify(_total))
+            return res;
+      })
+  }
+
 
 function getById(id) {
     const requestOptions = {
