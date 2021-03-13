@@ -10,18 +10,20 @@ export let userActions = {
     register,
     registerdata,
     createpost,
-    getallpost
+    getpostpage
     
 };
 
-function getallpost(){
-    userService.getAll()
-    return { type: userConstants.GETALLPOST }
+function getpostpage(currentPage, postsLimit){
+    userService.getPostPage(currentPage, postsLimit)
+    return { type: userConstants.GETPOSTPAGE }
 
    /* function request(allPost) { return { type: userConstants.GETALL_REQUEST, allPost } }
     function success(allPost) { return { type: userConstants.GETALL_SUCCESS, allPost } }
     function failure(error) { return { type: userConstants.GETALL_FAILURE, error } }*/
 }
+
+
 
 function login(username, password) {
     return dispatch => {

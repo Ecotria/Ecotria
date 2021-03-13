@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import './ShortPost.css'
 import { userService } from '../../services'
 
@@ -18,8 +18,6 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-
-
 
 
 const useStyles = makeStyles((theme) => ({
@@ -54,19 +52,22 @@ const useStyles = makeStyles((theme) => ({
  function ShortPost() {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  const [currentPage, setPageNumber] = useState(0);
+  const [postsLimit, setPostsLimit] = useState(0);
+  userService.getPostPage(0,5);
  
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
-  var unparsedpost = localStorage.getItem('PostArray')
-  var post = JSON.parse(unparsedpost)
+  var unparsedpost = localStorage.getItem('PostPageArray');
+  var post = JSON.parse(unparsedpost);
 
   
   return  (
     <div className="cards">
-    { post.slice(0,3).map((post, index) => (
+    { post.map((post, index) => (
       <div className="card-item" key={index}>
           <Card className={classes.root}>
             <CardHeader

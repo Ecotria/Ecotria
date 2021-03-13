@@ -6,7 +6,7 @@ export const userService = {
     logout,
     register,
     registerdata,
-    getAll,
+    getPostPage,
     getById,
     update,
     createpost,
@@ -36,19 +36,19 @@ function logout() {
     localStorage.removeItem('user');
 }
 
-function getAll() {
-    var token = localStorage.getItem('token')
+function getPostPage(currentPage,postsLimit) {
+    // var token = localStorage.getItem('token')
     const requestOptions = {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json',  'Authorization': token },
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ currentPage, postsLimit })
     };
 
-    return fetch(`${config.apipath}${config.user.getallpost}`, requestOptions)
+    return fetch(`${config.apipath}${config.user.getpostpage}`, requestOptions)
     .then(handleResponse)
     .then(post => {
         var _post = post.data
-        localStorage.setItem('PostArray', JSON.stringify(_post))
-        console.log(typeof localStorage.getItem('PostArray'))
+        localStorage.setItem('PostPageArray', JSON.stringify(_post))
     });
 }
 

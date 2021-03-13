@@ -1,21 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import ShortPost from "../../components/ShortPost/ShortPost";
+// import ShortPost from "../../components/ShortPost/ShortPost";
 import ShortPostFeed from "../../components/ShortPost/ShortPostFeed";
 import "./Home.css";
-import { userActions } from '../../actions';
-import { userService } from '../../services'
+// import { userActions } from '../../actions';
+// import { userService } from '../../services'
 import { Avatar } from '@material-ui/core'
 
 
 class HomePage extends React.Component {
 
-  constructor(props) {
-    super(props);
-       userService.getAll()
-}
-  
  
   render() {
     return(
