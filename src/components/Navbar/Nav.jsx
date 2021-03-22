@@ -37,7 +37,7 @@ const NavigateBar = (props) => {
           </div>
 
           <div title="Agregar Publicación" className="tooltip">
-            <a href="/registerdata">
+            <a href="/postcreate">
               <LibraryAddIcon fontSize="large"/>
                 <span class="tooltiptext">Agregar Publicación</span>
             </a>

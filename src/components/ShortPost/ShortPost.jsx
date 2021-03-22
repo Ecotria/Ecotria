@@ -28,7 +28,8 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     cursor: 'pointer',
     marginRight: 10,
-    marginBottom: 10
+    marginBottom: 10,
+    backgroundColor: '#FFFFFF'
   },
   media: {
     height: 0,
@@ -56,7 +57,7 @@ function ShortPost() {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [currentPage, setPageNumber] = useState(0);
-  const [postsLimit, setPostsLimit] = useState(5);
+  const [postsLimit, setPostsLimit] = useState(8);
   const [post, setPost] = useState([]);
   
   useEffect( () => {
@@ -67,12 +68,7 @@ function ShortPost() {
     fetchPost();
   },[currentPage]);
 
-  // loadpost = JSON.parse(userService.getPostPage(currentPage,postsLimit));
-  // console.log(loadpost);
-  
-  // var unparsedpost = localStorage.getItem('PostPageArray');
-  // // var post = loadpost;
-  // var post = JSON.parse(unparsedpost);
+
   var total = localStorage.getItem('Total Posts');
   var pagemaxindex = parseInt(total/postsLimit);
 
@@ -97,6 +93,7 @@ function ShortPost() {
   else{
 
     return  (
+     <div className="wrapper"> 
       <div className="cards">
       { post.map((post, index) => (
         <div className="card-item" key={index}>
@@ -132,10 +129,15 @@ function ShortPost() {
         </div>
       ))}
   
-      <div className="pagination">
-       <Pagination page={currentPage} onChange={handlePagination} count={pagemaxindex} defaultPage={1} showFirstButton showLastButton />
-      </div>
+       
   
+      </div>
+   
+      <div className="pagination">
+        <Pagination className="pagination-bottom" page={currentPage} onChange={handlePagination} count={pagemaxindex} defaultPage={1} showFirstButton showLastButton />
+      </div>
+
+
     </div>
     )
 

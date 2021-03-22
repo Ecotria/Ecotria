@@ -9,11 +9,11 @@ import { LoginPage } from '../pages/Login/Login';
 import { RegisterPage } from '../pages/RegisterPage/RegisterPage';
 import { RegisterDataPage } from '../pages/RegisterDataPage';
 import Admin from '../pages/Admin'
-import Footer from '../components/Footer';
+import Footer from '../components/Footer/Footer';
 import Header from '../components/Header';
 import './App.css';
 import Nav from '../components/Navbar/Nav';
-import PostCreate from '../pages/PostCreate';
+import { PostCreate } from '../pages/PostCreate/PostCreate';
 //import { PostSignup } from '../pages/PostSignup';
 
 class App extends React.Component {
@@ -37,6 +37,7 @@ class App extends React.Component {
                 <Switch>
                     <Route path="/login" component={LoginPage} />
                     <Route exact path="/register" component={withRouter(RegisterPage)} />
+                    <PrivateRoute path="/postcreate" component={withRouter(PostCreate)}/>
                     <PrivateRoute exact path="/registerdata" component={withRouter(RegisterDataPage)} />
                     <PrivateRoute exact path="/postcreate" component={withRouter(PostCreate)} />
                     <PrivateRoute exact path="/admin" component={Admin} />

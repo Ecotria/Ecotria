@@ -2,10 +2,38 @@
     display: flex;
     flex-direction: row;
     height: 100%;
-    background-color: #F0F2F5;
+    /* background-color: #F0F2F5; */
+    background-color: #F2F2F2;
+
+    @media only screen and (min-width : 768px) {
+        width: 75%;
+        background-color: green;
+      }
+    
+      /* Medium Devices, Desktops */
+      @media only screen and (min-width : 992px) {
+        width: 50%;
+        background-color: pink;
+      }
+
 }
+
+    /* Small Devices, Tablets */
+
+
 .sidebar{
     flex: 15%;
+    max-width: 300px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
+    transition: 0.3s;
+    border: 1px;
+    border-radius: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    min-width: fit-content;
+    margin: 10px 15px 10px 15px;
+    background-color: #FFFFFF;
+    /* position: fixed; */
 }
 
 .feed{
@@ -14,15 +42,32 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
+    transition: 0.3s;
+    border: 1px;
+    border-radius: 15px;
+    margin: 10px 15px 10px 15px;
+    min-width: fit-content;
+    background-color: #FFFFFF;
+    /* position: fixed; */
 }
 
 .ad{
     flex: 20%;
     padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
+    transition: 0.3s;
+    border: 1px;
+    border-radius: 15px;
+    margin: 10px 15px 10px 15px;
+    min-width: fit-content;
+    max-width: 300px;
+    background-color: #FFFFFF;
+    position: relative; 
 }
 
 .ad>img{
-    width: 100%;
+    width: 400px;
 }
 
 

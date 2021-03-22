@@ -1,10 +1,31 @@
+.wrapper{
+  display: grid;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
 .cards {
-    display: flex;
-    flex-flow: row wrap;
+    display: grid;
     justify-content: center;
+    grid-template-columns: repeat(4, 1fr);
 
   }
   
   .card-item {
+    height: auto;
+    width: 100%;
+    max-width: fit-content; 
+    padding: 5px;
+    flex-grow: 1;
+    align-content: center;
+    justify-content: center;
+    box-shadow: 3px;
     
+  }
+
+  .pagination{
+    display: flex;
+    /* position: fixed; */
+    justify-content: center;
+    padding-top: 2.5rem;
   }

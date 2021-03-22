@@ -37,6 +37,18 @@
     color: white;
 }
 
+a:link {
+    color: white;
+}
+
+a:visited{
+    color: white;
+}
+
+a:hover{
+    color: #FF9933;
+}
+
 /* Tooltip */
 .tooltip {
     position: relative;
@@ -44,9 +56,6 @@
     border-bottom: 1px dotted black;
   }
 
-  .tooltip:hover{
-      background-color: #FF9933;
-  }
   
   .tooltip .tooltiptext {
     visibility: hidden;
