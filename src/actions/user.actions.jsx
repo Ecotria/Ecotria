@@ -10,7 +10,8 @@ export let userActions = {
     register,
     registerdata,
     createpost,
-    getpostpage
+    getpostpage,
+    postuploadimage
     
 };
 
@@ -21,6 +22,15 @@ function getpostpage(currentPage, postsLimit){
    /* function request(allPost) { return { type: userConstants.GETALL_REQUEST, allPost } }
     function success(allPost) { return { type: userConstants.GETALL_SUCCESS, allPost } }
     function failure(error) { return { type: userConstants.GETALL_FAILURE, error } }*/
+}
+
+function postuploadimage(_id, img){
+
+         userService.postUploadImage(_id, img)
+        
+    function request(img) {return  {type: userConstants.POST_UPLOAD_IMAGE_REQUEST}, img }
+    function success(img) {return  {type: userConstants.POST_UPLOAD_IMAGE_SUCCESS}, img }
+    function failure(error) {return  {type: userConstants.POST_UPLOAD_IMAGE_FAILURE}, error }
 }
 
 

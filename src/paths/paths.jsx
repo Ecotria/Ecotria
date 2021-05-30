@@ -7,7 +7,10 @@ const config = {
         createuserdata: '/datosrespo-create',
         login: '/user-login',
         createpost: '/post_create',
-        getpostpage: '/post_list_all'
+        getpostpage: '/post_list_all',
+        postcounter: '/post_counter',
+        postuploadimage: '/post_upload_img',
+        getpostbyid: '/post_view'
     }
 }
 

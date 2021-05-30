@@ -114,7 +114,7 @@ function ShortPost() {
               />
               <CardMedia
                 className={classes.media}
-                image="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Agricultural_machinery.jpg/1200px-Agricultural_machinery.jpg"
+                image={post.Images}
                 title="Industria Agrícola"
               />
               <CardContent>

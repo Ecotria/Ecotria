@@ -25,7 +25,7 @@ const NavigateBar = (props) => {
 
         <div className="nav-left">      
           <a href={"/"}><img src={logo} width="40" height="40"/></a>
-          <SearchBar />
+          {/* +<SearchBar /> */}
         </div>
 
         <div className="nav-middle">
@@ -60,7 +60,7 @@ const NavigateBar = (props) => {
         <div className="nav-right">
 
           <div>
-            <a href={"/login"}>Cambiar de Usuario</a>
+            <a href={"/admindashboard"}>Admin Dashboard</a>
           </div>
 
           <div>
@@ -68,11 +68,11 @@ const NavigateBar = (props) => {
           </div>
 
           <div>
-                Ver tu Perfil
+            <a href={"/userdashboard"}>Ver tu Perfil</a>
           <div>
 
           <div>
-                Publicar Listado
+            <a href={"/imageupload"}>Subir Imagen de Post</a>
           </div>
 
           <div/>

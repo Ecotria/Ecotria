@@ -8,9 +8,10 @@ export const userService = {
     register,
     registerdata,
     getPostPage,
-    getById,
+    getPostById,
     update,
     createpost,
+    postUploadImage
 };
 
 function login(correo, contrasena) {
@@ -63,16 +64,23 @@ async function getPostPage(currentPagenum,postsLimitnum){
             localStorage.setItem('Total Posts', JSON.stringify(_total))
             return res;
       })
-  }
+}
 
 
-function getById(id) {
-    const requestOptions = {
-        method: 'GET',
-        headers: authHeader()
-    };
+async function getPostById(idparam) {
+    return await axios.get(`${config.apipath}${config.user.getpostbyid}`, { id: idparam }, { headers: {'Content-Type': 'application/json'} })
+    .then(res =>{
+        return res
+    })
+}
 
-    return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
+function postUploadImage(id, _img ){
+    console.log(_img)
+    axios.post(`${config.apipath}${config.user.postuploadimage}`, { _id: id, img: _img }, { headers: {'Content-Type': 'application/json'} })
+        .then(res => {
+            console.log(res)
+            return res;
+      })
 }
 
 function register(user) {
