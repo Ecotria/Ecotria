@@ -1,6 +1,6 @@
 const config = {
 
-    apipath: 'http://178.62.216.105:5007/ecotria_api',
+    apipath: 'http://159.89.179.186:5007/ecotria_api',
     
     user:{
         create: '/user-create',

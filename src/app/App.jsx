@@ -54,7 +54,7 @@ class App extends React.Component {
                     <Redirect from="*" to="/login" />
                 </Switch>
                 </Router>
-                <Footer/>
+                {/* <Footer/> */}
             </React.Fragment>
 
         );

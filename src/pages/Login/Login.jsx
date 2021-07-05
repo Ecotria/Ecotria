@@ -57,7 +57,14 @@ class LoginPage extends React.Component {
 
                         <div className="form-group-input">             
                             <div className={'form-group' + (submitted && !password ? ' has-error' : '')}>
-                                <input type="password" className="form-control" name="password" placeholder="Contraseña" autoComplete="current-password" value={password} onChange={this.handleChange} />
+                                <input 
+                                type="password" 
+                                className="form-control"
+                                name="password" 
+                                placeholder="Contraseña" 
+                                autoComplete="current-password" 
+                                value={password} 
+                                onChange={this.handleChange} />
                                 {submitted && !password &&
                                     <div className="help-block">Contraseña Requerida</div>
                                 }

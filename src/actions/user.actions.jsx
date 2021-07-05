@@ -112,6 +112,7 @@ function registerdata(user) {
 
 
 function createpost(post){
+    console.log("post", post);
     return dispatch => {
         dispatch(request(post));
 

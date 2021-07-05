@@ -55,10 +55,12 @@ const useStyles = makeStyles((theme) => ({
 
 function ShortPost() {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
-  const [currentPage, setPageNumber] = useState(0);
+  const [expanded, setExpanded] = useState(false);
+  const [currentPage, setPageNumber] = useState(1);
   const [postsLimit, setPostsLimit] = useState(8);
   const [post, setPost] = useState([]);
+  let total = localStorage.getItem('Total Posts');
+  const paginationIndex = Math.ceil(total/8);
   
   useEffect( () => {
     const fetchPost = async () =>{
@@ -69,8 +71,7 @@ function ShortPost() {
   },[currentPage]);
 
 
-  var total = localStorage.getItem('Total Posts');
-  var pagemaxindex = parseInt(total/postsLimit);
+ 
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -95,7 +96,7 @@ function ShortPost() {
     return  (
      <div className="wrapper"> 
       <div className="cards">
-      { post.map((post, index) => (
+      { post? post.map((post, index) => (
         <div className="card-item" key={index}>
             <Card className={classes.root}>
               <CardHeader
@@ -103,11 +104,6 @@ function ShortPost() {
                   <Avatar aria-label="recipe" className={classes.avatar}>
                     Eco
                   </Avatar>
-                }
-                action={
-                  <IconButton aria-label="settings">
-                    <MoreVertIcon />
-                  </IconButton>
                 }
                 title={post.titlePost}
                 subheader={post.catergory}
@@ -120,21 +116,20 @@ function ShortPost() {
               <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
                 <h3>{post.descriptionPost}</h3>
-                <h3>{post.price}</h3>
+                <h1>${post.price? post.price:0}</h1>
                 </Typography>
               </CardContent>
               
           </Card>
   
         </div>
-      ))}
-  
-       
-  
+      ))
+      : <div>Esto ta vacio</div>
+      }  
       </div>
    
       <div className="pagination">
-        <Pagination className="pagination-bottom" page={currentPage} onChange={handlePagination} count={pagemaxindex} defaultPage={1} showFirstButton showLastButton />
+        <Pagination className="pagination-bottom" page={currentPage} onChange={handlePagination} count={paginationIndex} defaultPage={1} showFirstButton showLastButton />
       </div>
 
 

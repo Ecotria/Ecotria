@@ -104,14 +104,14 @@ function registerdata(user) {
     return fetch(`${config.apipath}${config.user.createuserdata}`, requestOptions).then(handleResponse); 
 }
 
-function createpost(post) {
-    const requestOptions = {
-        method: 'POST',
-        headers: { ...authHeader(), 'Content-Type': 'application/json'},
-        body: JSON.stringify(post)
-        }
-    
-    return fetch(`${config.apipath}${config.user.createpost}`, requestOptions).then(handleResponse);
+function createpost(post) {   
+    var token = localStorage.getItem('token')
+    // return fetch(`${config.apipath}${config.user.createpost}`, requestOptions).then(handleResponse);
+    return  axios.post(`${config.apipath}${config.user.createpost}`, { titlePost: post.titlePost, price: post.price, descriptionPost: post.descriptionPost, catergory: post.catergory, address: post.address, phoneNumber: post.phoneNumber , email: post.email, subscriberId: post.subsciberID}, { headers: {'Content-Type': 'application/json', 'Authorization': token } })
+    .then(res => {
+        console.log("Respuesta de create post", res)
+        return res;
+  })
 }
 
 function update(user) {
