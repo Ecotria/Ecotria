@@ -48,7 +48,7 @@ class App extends React.Component {
                     <Route exact path="/postview" component={withRouter(PostView)} />
                     <PrivateRoute exact path="/admin" component={Admin} />
                     <PrivateRoute exact path="/" component={HomePage} />
-                    <PrivateRoute exact path="/userdashboard" component={Dashboard}/>
+                    {/* <PrivateRoute exact path="/userdashboard" component={Dashboard}/> */}
                     <PrivateRoute exact path="/admindashboard" component={AdminDashboard}/>
                     <PrivateRoute exact path="/imageupload" component={ImageUpload}/>
                     <Redirect from="*" to="/login" />
