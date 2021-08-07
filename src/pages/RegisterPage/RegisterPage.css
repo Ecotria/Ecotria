@@ -1,4 +1,4 @@
-.register-page{
+ .register-page{
     height: 1300px;
     width: 100%;
     position: fixed;
@@ -8,9 +8,9 @@
     background-attachment: fixed;
     background-position: center;
      background-repeat: no-repeat;
-    box-shadow: inset 0 0 0 1000px rgba(0,0,0,.4);
+    /* box-shadow: inset 0 0 0 1000px rgba(0,0,0,.4); */
 }
-
+/*
 .register-form{
     height: auto;
     margin: 20px auto 0;
@@ -53,4 +53,4 @@ input.form-control::placeholder {
 
 .btn{
     color: white;
-}
+} */

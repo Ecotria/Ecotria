@@ -37,20 +37,20 @@ class App extends React.Component {
         return (
 
             <React.Fragment>
-                <Nav />
+                {/* <Nav /> */}
                     <Router history={history}> 
                 <Switch>
                     <Route path="/login" component={LoginPage} />
                     <Route exact path="/register" component={withRouter(RegisterPage)} />
-                    <PrivateRoute path="/postcreate" component={withRouter(PostCreate)}/>
-                    <PrivateRoute exact path="/registerdata" component={withRouter(RegisterDataPage)} />
-                    <PrivateRoute exact path="/postcreate" component={withRouter(PostCreate)} />
+                    <Route path="/postcreate" component={withRouter(PostCreate)}/>
+                    <Route exact path="/registerdata" component={withRouter(RegisterDataPage)} />
+                    <Route exact path="/postcreate" component={withRouter(PostCreate)} />
                     <Route exact path="/postview" component={withRouter(PostView)} />
-                    <PrivateRoute exact path="/admin" component={Admin} />
-                    <PrivateRoute exact path="/" component={HomePage} />
-                    {/* <PrivateRoute exact path="/userdashboard" component={Dashboard}/> */}
-                    <PrivateRoute exact path="/admindashboard" component={AdminDashboard}/>
-                    <PrivateRoute exact path="/imageupload" component={ImageUpload}/>
+                    <Route exact path="/admin" component={Admin} />
+                    <Route exact path="/" component={HomePage} />
+                    {/* <Route exact path="/userdashboard" component={Dashboard}/> */}
+                    <Route exact path="/admindashboard" component={AdminDashboard}/>
+                    <Route exact path="/imageupload" component={ImageUpload}/>
                     <Redirect from="*" to="/login" />
                 </Switch>
                 </Router>

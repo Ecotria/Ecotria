@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
 import { userActions } from '../../actions';
 import './Login.css'
 import { userService } from '../../services'
+// import logo from "../../img/Logo/Ecotria-Logo-NavbarIcon.png";
+import logo from "../../img/Logo/Ecotria-Logo-Ene21_Logo-1080px.png";
+import { Button } from '@material-ui/core';
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -39,6 +42,11 @@ class LoginPage extends React.Component {
         }
     }
 
+    goToRegister(){
+        console.log("ESTO FUNCIONA O QUE XOPA?!");
+        return <a href={"/register"}/>
+    }
+
     render() {
         const { loggingIn } = this.props;
         const { username, password, submitted } = this.state;
@@ -46,9 +54,10 @@ class LoginPage extends React.Component {
             <div className = "login-page">
                 <div className="login-form">
                     <form name="form" onSubmit={this.handleSubmit}>
+                    <img className="logo" src={logo} width="180" height="180" />
                         <div className="form-group-input">
                             <div className={'form-group' + (submitted && !username ? ' has-error' : '')}>
-                                <input type="text" className="form-control" name="username" placeholder="Correo" value={username} onChange={this.handleChange} />
+                                <input type="email" className="form-control" name="username" placeholder="Correo" value={username} onChange={this.handleChange} />
                                 {submitted && !username &&
                                     <div className="help-block">Correo Requerido</div>
                                 }
@@ -77,10 +86,9 @@ class LoginPage extends React.Component {
                                 {loggingIn &&
                                     <img alt="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                                 }
-                                <Link to="/register">Register</Link>
+                                <a href={"/register"} className="btn-login">Registrarse</a>
                             </div>
                         </div>
-
                     </form>
                 </div>
             </div>
