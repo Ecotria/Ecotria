@@ -7,17 +7,33 @@
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
-     background-repeat: no-repeat;
+    background-repeat: no-repeat;
     /* box-shadow: inset 0 0 0 1000px rgba(0,0,0,.4); */
 }
-/*
-.register-form{
-    height: auto;
-    margin: 20px auto 0;
-    width: 300px;
-    background-color: #362C28;
-    border-radius: 15px;
+
+.form-group-input{
+    padding: 20px;
+    margin: 30px;
+    background-color: rgba(100,100,100, .7);
+    border-radius: 25px;
+
 }
+.register-form{
+    height: 460px;
+    margin: -30px auto;
+    padding-right: 25%;
+    width: 700px;
+    /* background-color: #362C28; */
+    border-radius: 80px;
+}
+
+.logoRegister{
+    padding-left: 200px;
+}
+
+/*
+
+
 
 .form-group-input{
     padding: 10px;
@@ -54,3 +70,17 @@ input.form-control::placeholder {
 .btn{
     color: white;
 } */
+
+.btn-signup{
+    padding: 10px;
+    margin: 10px;
+    margin-left: 37px;
+    background-color: #FF9933;
+    border-radius: 999px;
+    border: none;
+    outline-width: 0;
+    color: white;
+    align-items: center;
+    min-width: 120px;
+    text-decoration: none;
+}

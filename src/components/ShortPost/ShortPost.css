@@ -7,14 +7,15 @@
 .cards {
     display: grid;
     justify-content: center;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
 
   }
   
   .card-item {
     height: auto;
     width: 100%;
-    max-width: fit-content; 
+    min-width: 400px;
+    max-width: 300px; 
     padding: 5px;
     flex-grow: 1;
     align-content: center;

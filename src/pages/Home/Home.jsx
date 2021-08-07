@@ -32,12 +32,12 @@ class HomePage extends React.Component {
          <ShortPostFeed/>
         </div>
 
-        {/* <div className="ad">
+        <div className="ad">
           <img
             src="https://www.wearemarketing.com/media/cache/dynamic/rc/rrepl4Kc//uploads/media/default/0001/21/cd02f7f6393676420be1f04e6ca4b191344ee313.jpeg"
             alt="Google Ads go here"
           />
-        </div> */}
+        </div>
       </div>
     )
   }

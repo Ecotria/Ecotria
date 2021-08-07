@@ -50,7 +50,8 @@ const NavigateBar = (props) => {
 
   return (
     <div className={classes.root}>
-      <AppBar color="primary" position="static">
+      <AppBar color="primary" position="relative">
+        {/* <Toolbar> */}
       <div className="nav-left">
         <a href={"/"}>
           <img src={logo} width="40" height="40" />
@@ -114,6 +115,7 @@ const NavigateBar = (props) => {
           </div>
         </div>
       </div>
+      {/* </Toolbar> */}
       </AppBar>
     </div>
   );

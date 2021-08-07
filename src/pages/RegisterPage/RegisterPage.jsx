@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './RegisterPage.css'
+import logo from "../../img/Logo/Ecotria-Logo-Ene21_Logo-1080px.png";
 
 import { userActions } from '../../actions';
 
@@ -53,7 +54,7 @@ class RegisterPage extends React.Component {
                 <div className="register-form">
                     <div className="col-md-6 col-md-offset-3">
                         <form name="form" onSubmit={this.handleSubmit}>
-                            
+                        <img className="logoRegister" src={logo} width="180" height="180" />
                             <div className="form-group-input">
                                 <div className={'form-group' + (submitted && !user.nombre ? ' has-error' : '')}>
                                     <input type="text" className="form-control" name="nombre" placeholder="Nombre" value={user.nombre} onChange={this.handleChange} />
@@ -94,7 +95,9 @@ class RegisterPage extends React.Component {
                                 <div className="form-group">
                                     <button className="btn-signup">Registrar</button>
                                     {registering}
-                                    <Link to="/login" className="btn">Cancelar</Link>
+                                    <a href={"/login"}>
+                                    <button to="/login" type="button" className="btn-signup">Cancelar</button>
+                                    </a>
                                 </div>    
                             </div>
 

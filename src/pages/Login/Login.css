@@ -50,6 +50,41 @@ input.form-control::placeholder {
 }
 
 .form-group-button > div > button {
+    /* padding: 10px;
+    margin: 10px;
+    background-color: #FF9933;
+    border-radius: 999px;
+    border: none;
+    outline-width: 0;
+    color: white;
+    align-items: center;
+    min-width: 120px; */
+}
+
+.form-group-button > div > a {
+    /* padding: 10px;
+    margin: 10px;
+    background-color: #FF9933;
+    border-radius: 999px;
+    border: none;
+    outline-width: 0;
+    color: white;
+    align-items: center;
+    min-width: 120px;
+    text-decoration: none;
+    /* align-items: baseline; 
+    justify-content: center; */
+}
+
+.form-group-button > div{
+    padding-left: 100px;
+}
+
+.logo{
+    padding-left: 160px;
+}
+
+.btn-login{
     padding: 10px;
     margin: 10px;
     background-color: #FF9933;
@@ -59,12 +94,5 @@ input.form-control::placeholder {
     color: white;
     align-items: center;
     min-width: 120px;
-}
-
-.form-group-button > div{
-    padding-left: 100px;
-}
-
-.logo{
-    padding-left: 160px;
+    text-decoration: none;
 }

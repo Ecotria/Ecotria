@@ -24,7 +24,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 300,
-    minWidth: 300,
+    minWidth: 200,
     position: 'relative',
     cursor: 'pointer',
     marginRight: 10,
@@ -57,7 +57,7 @@ function ShortPost() {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
   const [currentPage, setPageNumber] = useState(1);
-  const [postsLimit, setPostsLimit] = useState(8);
+  const [postsLimit, setPostsLimit] = useState(9);
   const [post, setPost] = useState([]);
   let total = localStorage.getItem('Total Posts');
   const paginationIndex = Math.ceil(total/8);
