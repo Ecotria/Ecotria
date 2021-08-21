@@ -5,7 +5,7 @@ import { history } from '../helpers';
 import { alertActions } from '../actions';
 import { PrivateRoute } from '../components';
 import { HomePage } from '../pages/Home/Home';
-import { LoginPage } from '../pages/Login/Login';
+import  LoginPage  from '../pages/Login/Login';
 import { RegisterPage } from '../pages/RegisterPage/RegisterPage';
 import { RegisterDataPage } from '../pages/RegisterDataPage';
 import Admin from '../pages/Admin'
@@ -42,15 +42,15 @@ class App extends React.Component {
                 <Switch>
                     <Route path="/login" component={LoginPage} />
                     <Route exact path="/register" component={withRouter(RegisterPage)} />
-                    <Route path="/postcreate" component={withRouter(PostCreate)}/>
-                    <Route exact path="/registerdata" component={withRouter(RegisterDataPage)} />
-                    <Route exact path="/postcreate" component={withRouter(PostCreate)} />
-                    <Route exact path="/postview" component={withRouter(PostView)} />
-                    <Route exact path="/admin" component={Admin} />
-                    <Route exact path="/" component={HomePage} />
+                    <PrivateRoute path="/postcreate" component={withRouter(PostCreate)}/>
+                    <PrivateRoute exact path="/registerdata" component={withRouter(RegisterDataPage)} />
+                    <PrivateRoute exact path="/postcreate" component={withRouter(PostCreate)} />
+                    <PrivateRoute exact path="/postview" component={withRouter(PostView)} />
+                    <PrivateRoute exact path="/admin" component={Admin} />
+                    <PrivateRoute exact path="/" component={HomePage} />
                     {/* <Route exact path="/userdashboard" component={Dashboard}/> */}
-                    <Route exact path="/admindashboard" component={AdminDashboard}/>
-                    <Route exact path="/imageupload" component={ImageUpload}/>
+                    <PrivateRoute exact path="/admindashboard" component={AdminDashboard}/>
+                    <PrivateRoute exact path="/imageupload" component={ImageUpload}/>
                     <Redirect from="*" to="/login" />
                 </Switch>
                 </Router>
