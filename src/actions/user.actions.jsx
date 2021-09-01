@@ -4,7 +4,7 @@ import { alertActions } from './';
 import { history } from '../helpers';
 import { Redirect } from 'react'
 
-export let userActions = {
+export const userActions = {
     login,
     logout,
     register,
@@ -12,7 +12,6 @@ export let userActions = {
     createpost,
     getpostpage,
     postuploadimage
-    
 };
 
 function getpostpage(currentPage, postsLimit){
@@ -35,11 +34,11 @@ function postuploadimage(_id, img){
 
 
 
-function login(username, password) {
+function login(email, password) {
     return dispatch => {
-        dispatch(request({ username }));
+        dispatch(request({ email }));
 
-        userService.login(username, password)
+        userService.login(email, password)
             .then(
                 user => { 
                     dispatch(success(user));

@@ -1,5 +1,11 @@
   
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+//Actions
+import {userActions} from '../../actions';
+
+//UI
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -72,7 +78,34 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function LoginPage() {
+
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const login = userActions.login;
+  const [submitted, setSubmitted] = useState(false)
+  const [credentials , setCredentials] = useState({
+    email : "",
+    password : ""
+})
+
+const handleChange = (e) => {
+  console.log("Log Change", e);
+  const {id , value} = e.target   
+  setCredentials(prevState => ({
+      ...prevState,
+      [id] : value
+  }))
+}
+
+  const handleSubmit=(e)=> {
+    e.preventDefault();
+    console.log("Email and pass", credentials.email, credentials.password);
+    setSubmitted(true);
+    const { email, password } = credentials;
+    if (email && password) {
+      dispatch(login(email, password));
+    }
+}
 
   return (
     <div className={classes.root}>
@@ -82,11 +115,13 @@ export default function LoginPage() {
           <img src={logo} className={classes.container} src={logo} width="180" height="180"/>
         <form className={classes.form} noValidate>
           <TextField
+            onChange={handleChange}
             variant="outlined"
             margin="normal"
             required
             fullWidth
             id="email"
+            value={credentials.email}
             label="Correo"
             name="email"
             autoComplete="email"
@@ -98,6 +133,7 @@ export default function LoginPage() {
               } }}
           />
           <TextField
+            onChange={handleChange}
             variant="outlined"
             margin="normal"
             required
@@ -106,6 +142,7 @@ export default function LoginPage() {
             label="Contraseña"
             type="password"
             id="password"
+            value={credentials.password}
             autoComplete="current-password"
             className={classes.TextField}
             InputLabelProps={{
@@ -121,6 +158,7 @@ export default function LoginPage() {
               }}
           />
           <Button
+            onClick={handleSubmit}
             type="submit"
             fullWidth
             variant="contained"
@@ -135,6 +173,7 @@ export default function LoginPage() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            href={"/register"}
           >
             Registrarse
           </Button>
@@ -156,6 +195,7 @@ export default function LoginPage() {
         <Copyright />
       </Box>
     </Container>
+    
     </div>
   );
 }
