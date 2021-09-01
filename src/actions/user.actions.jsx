@@ -67,11 +67,10 @@ function register(user) {
 
         userService.register(user)
             .then(
-                user => { 
+                user => {
                     dispatch(success());
-                    alert("trying redirect");
                     <Redirect to="/login" />
-                    history.push('/registerdata');
+                    history.push('/login');
                     dispatch(alertActions.success('Registration successful'));
                 },
                 error => {

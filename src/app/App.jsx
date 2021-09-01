@@ -6,7 +6,7 @@ import { alertActions } from '../actions';
 import { PrivateRoute } from '../components';
 import { HomePage } from '../pages/Home/Home';
 import  LoginPage  from '../pages/Login/Login';
-import { RegisterPage } from '../pages/RegisterPage/RegisterPage';
+import RegisterPage from '../pages/RegisterPage/RegisterPage';
 import { RegisterDataPage } from '../pages/RegisterDataPage';
 import Admin from '../pages/Admin'
 import Footer from '../components/Footer/Footer';

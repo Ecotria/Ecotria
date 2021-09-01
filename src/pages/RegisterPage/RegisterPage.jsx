@@ -1,122 +1,216 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import './RegisterPage.css'
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+//Actions
+import {userActions} from '../../actions';
+
+//UI
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
 import logo from "../../img/Logo/Ecotria-Logo-Ene21_Logo-1080px.png";
+import backgroundImage from "../../img/loginbackgroundgiro2.jpg";
 
-import { userActions } from '../../actions';
 
-class RegisterPage extends React.Component {
-    constructor(props) {
-        super(props);
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Ecotria
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
-        this.state = {
-            user: {
-                nombre: '',
-                apellido: '',
-                correo: '',
-                contrasena: ''
-            },
-            submitted: false
-        };
+const useStyles = makeStyles((theme) => ({
+  root:{
+    backgroundImage: `url(${backgroundImage})`,
+    width: "100%",
+    minHeight: "100vh",
+    backgroundSize: "cover",
+    margin: 0,
+    padding: 0,
+    // marginTop: 50
+  },
+  paper: {
+    // marginTop: theme.spacing(8), 
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    // margin: theme.spacing(1),
+    // backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+    backgroundColor: "#FF9933",
+    borderRadius: 100
+  },
+  container: {
+    marginTop: theme.spacing(8)
+  },
+  TextField:{
+    backgroundColor: "rgba(100,100,100, .7)",
+    borderRadius: 25,
+    border: 0,
+  },
+  label:{
+    color: "white"
+  }
+}));
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
+export default function RegisterPage() {
 
-    handleChange(event) {
-        const { name, value } = event.target;
-        const { user } = this.state;
-        this.setState({
-            user: {
-                ...user,
-                [name]: value
-            }
-        });
-    }
+  const classes = useStyles();
+  const dispatch = useDispatch();
+  const {register} = userActions;
+  const [submitted, setSubmitted] = useState(false)
+  const [signupData , setSignupData] = useState({
+    nombre: "",
+    apellido: "",
+    correo : "",
+    contrasena : ""
+})
 
-    handleSubmit(event) {
-        console.log(event)
-        event.preventDefault();
+const handleChange = (e) => {
+  const {id , value} = e.target   
+  setSignupData(prevState => ({
+      ...prevState,
+      [id] : value
+  }))
+}
 
-        this.setState({ submitted: true });
-        const { user } = this.state;
-        if (user.nombre && user.apellido && user.correo && user.contrasena) {
-            this.props.register(user);
-        }
-    }
-
-     render() {
-        const { registering  } = this.props;
-        const { user, submitted } = this.state;
-        return (
-            <div className="register-page">    
-                <div className="register-form">
-                    <div className="col-md-6 col-md-offset-3">
-                        <form name="form" onSubmit={this.handleSubmit}>
-                        <img className="logoRegister" src={logo} width="180" height="180" />
-                            <div className="form-group-input">
-                                <div className={'form-group' + (submitted && !user.nombre ? ' has-error' : '')}>
-                                    <input type="text" className="form-control" name="nombre" placeholder="Nombre" value={user.nombre} onChange={this.handleChange} />
-                                    {submitted && !user.nombre &&
-                                        <div className="help-block">Nombre Requerido</div>
-                                    }
-                                </div>
-                            </div>
-
-                            <div className="form-group-input">
-                                <div className={'form-group' + (submitted && !user.apellido ? ' has-error' : '')}>
-                                    <input type="text" className="form-control" name="apellido" placeholder="Apellido" value={user.apellido} onChange={this.handleChange} />
-                                    {submitted && !user.apellido &&
-                                        <div className="help-block">Apellido Requerido</div>
-                                    }
-                                </div>
-                            </div>
-
-                            <div className="form-group-input">
-                                <div className={'form-group' + (submitted && !user.correo ? ' has-error' : '')}>
-                                    <input type="email" className="form-control" name="correo" placeholder="Correo" value={user.correo} onChange={this.handleChange} />
-                                    {submitted && !user.correo &&
-                                        <div className="help-block">Correo Requerido</div>
-                                    }
-                                </div>
-                            </div>
-
-                            <div className="form-group-input">
-                                <div className={'form-group' + (submitted && !user.password ? ' has-error' : '')}>
-                                    <input type="password" className="form-control" name="contrasena" placeholder="Contraseña" value={user.contrasena} onChange={this.handleChange} />
-                                    {submitted && !user.contrasena &&
-                                        <div className="help-block">Contrasena Requerida</div>
-                                    }
-                                </div>
-                            </div>
-
-                            <div className="form-group-button">
-                                <div className="form-group">
-                                    <button className="btn-signup">Registrar</button>
-                                    {registering}
-                                    <a href={"/login"}>
-                                    <button to="/login" type="button" className="btn-signup">Cancelar</button>
-                                    </a>
-                                </div>    
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
-            </div>    
-        );
+  const handleSubmit=(e)=> {
+    e.preventDefault();
+    setSubmitted(true);
+    const { nombre, apellido, correo, contrasena } = signupData;
+    if (nombre && apellido && correo && contrasena) {
+      dispatch(register(signupData));
     }
 }
 
-function mapState(state) {
-    const { registering } = state.registration;
-    return { registering };
+  return (
+    <div className={classes.root}>
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+          <img src={logo} className={classes.container} src={logo} width="180" height="180"/>
+        <form className={classes.form} noValidate>
+          <TextField
+            onChange={handleChange}
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="nombre"
+            value={signupData.nombre}
+            label="Nombre"
+            name="nombre"
+            autoFocus
+            className={classes.TextField}
+            InputLabelProps={{
+              style: {
+                color: 'white',
+              } }}
+          />
+          <TextField
+            onChange={handleChange}
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="apellido"
+            value={signupData.apellido}
+            label="Apellido"
+            name="apellido"
+            autoFocus
+            className={classes.TextField}
+            InputLabelProps={{
+              style: {
+                color: 'white',
+              } }}
+          />
+          <TextField
+            onChange={handleChange}
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="correo"
+            value={signupData.correo}
+            label="Correo"
+            name="correo"
+            autoComplete="correo"
+            autoFocus
+            className={classes.TextField}
+            InputLabelProps={{
+              style: {
+                color: 'white',
+              } }}
+          />
+          <TextField
+            onChange={handleChange}
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="contrasena"
+            label="Contraseña"
+            type="password"
+            id="contrasena"
+            value={signupData.contrasena}
+            autoComplete="current-password"
+            className={classes.TextField}
+            InputLabelProps={{
+              style: {
+                color: 'white',
+              } }}
+          />
+          <Button
+            onClick={handleSubmit}
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Registrarse
+          </Button>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+            href={"/login"}
+          >
+            Ir a Iniciar Sesión
+          </Button>
+        </form>
+      </div>
+      <Box mt={8}>
+        <Copyright />
+      </Box>
+    </Container>
+    
+    </div>
+  );
 }
-
-const actionCreators = {
-    register: userActions.register
-}
-
-const connectedRegisterPage = connect(mapState, actionCreators)(RegisterPage);
-export { connectedRegisterPage as RegisterPage };
