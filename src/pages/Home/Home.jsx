@@ -7,6 +7,7 @@ import "./Home.css";
 // import { userActions } from '../../actions';
 // import { userService } from '../../services'
 import { Avatar } from '@material-ui/core'
+import Nav from "../../components/Navbar/Nav";
 
 
 class HomePage extends React.Component {
@@ -14,8 +15,12 @@ class HomePage extends React.Component {
  
   render() {
     return(
+    <>
+      <div>
+        <Nav/>
+      </div>
       <div className="home">
-        <div className="sidebar">
+        {/* <div className="sidebar">
           <div className="sidebar-row"><Avatar/>User name goes here</div>
           <div className="sidebar-row">
             <Link to="/admin">Contactos</Link>
@@ -25,20 +30,21 @@ class HomePage extends React.Component {
           <div className="sidebar-row">Publicar</div>
           <div className="sidebar-row">Favoritos</div>
           <div className="sidebar-row">Noticias</div>
-        </div>
+        </div> */}
         
         <div className="feed">
           <h1>Marketplace</h1>
          <ShortPostFeed/>
         </div>
 
-        <div className="ad">
+        {/* <div className="ad">
           <img
             src="https://www.wearemarketing.com/media/cache/dynamic/rc/rrepl4Kc//uploads/media/default/0001/21/cd02f7f6393676420be1f04e6ca4b191344ee313.jpeg"
             alt="Google Ads go here"
           />
-        </div>
+        </div> */}
       </div>
+    </>
     )
   }
 }

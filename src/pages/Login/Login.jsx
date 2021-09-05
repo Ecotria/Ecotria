@@ -8,7 +8,6 @@ import {userActions} from '../../actions';
 //UI
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -109,8 +108,7 @@ const handleChange = (e) => {
 
   return (
     <div className={classes.root}>
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
+    <Container component="main" maxWidth="sm">
       <div className={classes.paper}>
           <img src={logo} className={classes.container} src={logo} width="180" height="180"/>
         <form className={classes.form} noValidate>
