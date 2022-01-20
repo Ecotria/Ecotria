@@ -53,7 +53,7 @@ class App extends React.Component {
             />
             <Route
               exact
-              path="/listing"
+              path="/postDetails"
               component={withRouter(Listing)}
             />
             <PrivateRoute
