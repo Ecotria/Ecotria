@@ -10,11 +10,8 @@ import { Avatar } from '@material-ui/core'
 import Nav from "../../components/Navbar/Nav";
 
 
-class HomePage extends React.Component {
-
- 
-  render() {
-    return(
+const HomePage = () => {
+  return(
     <>
       <div>
         <Nav/>
@@ -46,9 +43,7 @@ class HomePage extends React.Component {
       </div>
     </>
     )
-  }
 }
-
 
 const connectedHomePage = HomePage;
 export { connectedHomePage as HomePage };
