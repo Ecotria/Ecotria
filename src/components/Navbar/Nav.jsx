@@ -23,34 +23,9 @@ import SearchBar from "../Search Bar/SearchBar";
 import logo from "./Ecotria-Logo-NavbarIcon.png";
 import { authentication } from "../../reducers/authentication.reducer";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  navButtonsContainer: {
-    position: 'absolute', 
-    left: '50%', 
-    top: '50%',
-    transform: 'translate(-50%, -50%)'
-  },
-  title: {
-    flexGrow: 1,
-    marginLeft: theme.spacing(2),
-
-  },
-  subtitle: {
-    flexGrow: 1,
-    fontSize: 15,
-  },
-  offset: theme.mixins.toolbar,
-}));
-
 const NavigateBar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { loggedIn } = useSelector((state) => state.authentication);
+  const { loggedIn } = useSelector(state => state.authentication);
   const toggle = () => setIsOpen(!isOpen);
   const { history, location, match } = props;
   const classes = useStyles();
@@ -202,5 +177,30 @@ const NavigateBar = (props) => {
     </div>
   );
 };
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  navButtonsContainer: {
+    position: 'absolute', 
+    left: '50%', 
+    top: '50%',
+    transform: 'translate(-50%, -50%)'
+  },
+  title: {
+    flexGrow: 1,
+    marginLeft: theme.spacing(2),
+
+  },
+  subtitle: {
+    flexGrow: 1,
+    fontSize: 15,
+  },
+  offset: theme.mixins.toolbar,
+}));
 
 export default withRouter(NavigateBar);
