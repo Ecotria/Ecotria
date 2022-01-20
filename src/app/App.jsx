@@ -13,6 +13,7 @@ import { alertActions } from "../actions";
 import { PrivateRoute } from "../components";
 import { HomePage } from "../pages/Home/Home";
 import LoginPage from "../pages/Login/Login";
+import Listing from "../components/Listing/Listing";
 import RegisterPage from "../pages/RegisterPage/RegisterPage";
 import { RegisterDataPage } from "../pages/RegisterDataPage";
 import Admin from "../pages/Admin";
@@ -49,6 +50,11 @@ class App extends React.Component {
               exact
               path="/register"
               component={withRouter(RegisterPage)}
+            />
+            <Route
+              exact
+              path="/listing"
+              component={withRouter(Listing)}
             />
             <PrivateRoute
               path="/postcreate"
