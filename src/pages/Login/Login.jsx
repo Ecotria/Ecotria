@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 //Actions
-import {userActions} from '../../actions';
+import {alertActions, userActions} from '../../actions';
 
 //UI
 import Avatar from '@material-ui/core/Avatar';
@@ -103,6 +103,8 @@ const handleChange = (e) => {
     const { email, password } = credentials;
     if (email && password) {
       dispatch(login(email, password));
+    } else {
+      alert("Please enter email and password");
     }
 }
 

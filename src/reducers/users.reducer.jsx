@@ -44,6 +44,11 @@ export function users(state = {}, action) {
           return user;
         })
       };
+    case userConstants.GET_POST_DETAILS:
+      return {
+        ...state,
+        postDetails: action.payload
+      }
     default:
       return state
   }

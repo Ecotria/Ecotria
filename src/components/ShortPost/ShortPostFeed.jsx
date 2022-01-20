@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useDispatch } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ShortPost.css'
 import { userService } from '../../services'
-
+import { useDispatch } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
 import clsx from 'clsx';
@@ -21,6 +21,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { Container } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
+import { getPostDetail } from '../../actions';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -69,7 +70,7 @@ function ShortPostFeed() {
   const [post, setPost] = useState([]);
   let total = localStorage.getItem('Total Posts');
   const paginationIndex = Math.ceil(total/8);
-  
+  const dispatch = useDispatch();
   useEffect( () => {
     const fetchPost = async () =>{
       const result = await userService.getPostPage(currentPage,postsLimit);
@@ -89,7 +90,10 @@ function ShortPostFeed() {
     setPageNumber(value);
   };
 
-  
+  const postDtails = async (item) => {
+    console.log('first item', item);
+    dispatch(getPostDetail(item))
+  }
 
   if(post === null){
     return (
@@ -105,7 +109,7 @@ function ShortPostFeed() {
       <Grid container spacing={4} justifyContent="center" className={classes.gridRoot}>
       { post? post.map((post, index) => (
         <Grid item xs={12} sm={3} className={classes.cardContainer} key={index}>
-            <Card className={classes.root}>
+            <Card className={classes.root} onClick={()=> postDtails(post._id)} >
               <CardHeader
                 avatar={
                   <Avatar aria-label="recipe" className={classes.avatar}>

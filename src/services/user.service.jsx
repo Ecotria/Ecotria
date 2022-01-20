@@ -11,7 +11,8 @@ export const userService = {
     getPostById,
     update,
     createpost,
-    postUploadImage
+    postUploadImage,
+    getPostDetail
 };
 
 function login(correo, contrasena) {
@@ -55,7 +56,7 @@ function logout() {
 //     });
 // }
 
-async function getPostPage(currentPagenum,postsLimitnum){
+async function getPostPage(currentPagenum, postsLimitnum) {
     return await axios.post(`${config.apipath}${config.user.getpostpage}`, { currentPage: currentPagenum, postsLimit: postsLimitnum }, { headers: {'Content-Type': 'application/json'} })
         .then(res => {
             let _post = res.data.data
@@ -72,6 +73,20 @@ async function getPostById(idparam) {
     .then(res =>{
         return res
     })
+}
+
+async function getPostDetail(id) { 
+    const token = await localStorage.getItem('token')
+
+    return await axios.get(`${config.apipath}${config.user.getpostbyid}${id}`,
+        {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token
+            }
+        }).then(res => {
+            return res;
+        })
 }
 
 function postUploadImage(id, _img ){

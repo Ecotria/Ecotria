@@ -10,7 +10,7 @@ const config = {
         getpostpage: '/post_list_all',
         postcounter: '/post_counter',
         postuploadimage: '/post_upload_img',
-        getpostbyid: '/post_view'
+        getpostbyid: '/post_view?_id=',
     }
 }
 
