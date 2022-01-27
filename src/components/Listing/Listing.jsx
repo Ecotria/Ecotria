@@ -26,7 +26,7 @@ export default function Listing(props) {
       <Nav />
       <div>
         <h1 className={styles.title}>{details.titlePost}</h1>
-        <h2 className={styles.title}>Hernan Landau</h2>
+        <h3 className={styles.subtitle}>Aristides Ábrego</h3>
         
       </div>
       <div className={styles.body}>
@@ -51,7 +51,7 @@ export default function Listing(props) {
             <div style={{ textAlign: "left", paddingLeft: 10 }}>
               <h2>{details.descriptionPost}.</h2>
             </div>
-            <div style={{ textAlign: "left", paddingLeft: 10 }}>
+            <div  style={{ textAlign: "left", paddingLeft: 10, color: "grey" }}>
               <h2>$ {details.price}</h2>
             </div>
           </div>
@@ -120,6 +120,11 @@ export default function Listing(props) {
 
 const useStyles = makeStyles((theme) => ({
   title: {
+    textAlign: "center",
+    marginTop: "15px"
+  },
+  subtitle: {
+    color: "grey",
     textAlign: "center",
     marginTop: "15px"
   },
