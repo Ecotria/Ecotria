@@ -38,7 +38,7 @@ export default function Listing(props) {
           <h2>$ {details.price}</h2>
         </div>
         <div style={{display:'flex',justifyContent:'center', marginTop:3,marginBottom:3}}>
-          <Button href='https://api.whatsapp.com/send?phone=50762250666' variant="contained" color="primary" onClick={() => {
+          <Button target="_blank" href='https://api.whatsapp.com/send?phone=50762250666' variant="contained" color="primary" onClick={() => {
             // window.history.push('https://api.whatsapp.com/send?phone=50762250666')
             // {`https://api.whatsapp.com/send?phone=${details.phoneNumber}`}
             console.log('Que noris');

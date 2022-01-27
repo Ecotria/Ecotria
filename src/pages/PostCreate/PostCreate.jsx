@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { userActions } from "../../actions";
+import Nav from "../../components/Navbar/Nav";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 
 const PostCreate = (props) => {
   const dispatch = useDispatch();
@@ -61,11 +63,14 @@ const PostCreate = (props) => {
   };
 
   return (
-    <div className="create-post-page">
+    <>
+      <Nav />
+
+      {/* <div className="create-post-page">
       <div className="form-group-input">
         <h1>Crear Anuncio</h1>
 
-        <form onSubmit={handleSubmit}>
+        <form >
           <div className="create-post-page">
             <div className="form-group-input">
               <input
@@ -74,7 +79,7 @@ const PostCreate = (props) => {
                 id="titlePost"
                 placeholder="Título"
                 value={values.titlePost}
-                onChange={handleChange}
+                onChange={()=>handleChange}
               />
             </div>
 
@@ -84,7 +89,7 @@ const PostCreate = (props) => {
                 id="catergory"
                 placeholder="Categoría"
                 value={values.catergory}
-                onChange={handleChange}
+                onChange={()=>handleChange}
               >
                 <option value="Productor">Productor</option>
                 <option value="Transporte">Transporte</option>
@@ -102,7 +107,7 @@ const PostCreate = (props) => {
                 id="price"
                 placeholder="Precio"
                 value={values.price}
-                onChange={handleChange}
+                onChange={()=>handleChange}
               />
             </div>
 
@@ -113,7 +118,7 @@ const PostCreate = (props) => {
                 id="descriptionPost"
                 placeholder="Ingrese una descripción de su oferta de negocio"
                 value={values.descriptionPost}
-                onChange={handleChange}
+                onChange={()=>handleChange}
               />
             </div>
 
@@ -123,7 +128,7 @@ const PostCreate = (props) => {
                 name="address"
                 id="address"
                 value={values.address}
-                onChange={handleChange}
+                onChange={()=>handleChange}
                 placeholder="Dirección"
               />
             </div>
@@ -134,7 +139,7 @@ const PostCreate = (props) => {
                 name="phoneNumber"
                 id="phoneNumber"
                 value={values.phoneNumber}
-                onChange={handleChange}
+                onChange={()=>handleChange}
                 placeholder="Teléfono"
               />
             </div>
@@ -160,6 +165,75 @@ const PostCreate = (props) => {
         </form>
       </div>
     </div>
+     */}
+
+      {/*AQUI EMPIEZA FORMIK*/}
+      <div>
+        <h1>Crear Anuncio</h1>
+        <Formik
+          initialValues={{
+            titlePost: "",
+            suscriberID: "",
+            catergory: "",
+            price: "",
+            descriptionPost: "",
+            address: "",
+            email: "",
+            phoneNumber: "",
+          }}
+        //   validate={(values) => {
+        //     const errors = {};
+        //     if (!values.email) {
+        //       errors.email = "Required";
+        //     } else if (
+        //       !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+        //     ) {
+        //       errors.email = "Invalid email address";
+        //     }
+        //     return errors;
+        //   }}
+          onSubmit={(values, { setSubmitting }) => {
+            setTimeout(() => {
+              alert(JSON.stringify(values, null, 2));
+              setSubmitting(false);
+            }, 400);
+          }}
+        >
+          {({ isSubmitting }) => (
+            <Form>
+                <div className="form-group-input">
+            <label htmlFor="titlePost">Titulo</label>
+              <Field type="text" name="titlePost" />
+              <ErrorMessage name="titlePost" component="div" />
+              </div>
+              <div className="form-group-input">
+              <label htmlFor="catergory">Categoría</label>
+              <Field type="text" name="catergory" />
+              <ErrorMessage name="catergory" component="div" />
+              </div>
+              <div className="form-group-input">
+              <label htmlFor="price">Precio</label>
+              <Field type="text" name="price" />
+              <ErrorMessage name="price" component="div" />
+              </div>
+              <div className="form-group-input">
+              <label htmlFor="titlePost">Descripción</label>
+              <Field type="text" name="descriptionPost" />
+              <ErrorMessage name="descriptionPost" component="div" />
+              </div>
+              <div className="form-group-input">
+              <label htmlFor="titlePost">Dirección</label>
+              <Field type="text" name="address" />
+              <ErrorMessage name="address" component="div" />
+              </div>
+              <button type="submit" disabled={isSubmitting}>
+                Crear
+              </button>
+            </Form>
+          )}
+        </Formik>
+      </div>
+    </>
   );
 };
 
