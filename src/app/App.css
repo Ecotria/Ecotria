@@ -1,8 +1,11 @@
-  * {
-     margin: 0;
-     padding: 0;
-  } 
-  /* 
+/** @format */
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Oswald", sans-serif;
+}
+/* 
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
