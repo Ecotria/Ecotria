@@ -1,6 +1,12 @@
 /** @format */
 
-import { ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
+import {
+  Avatar,
+  Breadcrumbs,
+  ListItem,
+  ListItemIcon,
+  ListItemText
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import React from "react";
 import { useSelector } from "react-redux";
@@ -8,8 +14,8 @@ import { formatDate } from "../../utils/funtions";
 import ImageNotFound from "../../img/papas.jpeg";
 import Nav from "../Navbar/Nav";
 import Separator from "../common/separator.component";
-import Button from '@material-ui/core/Button'
-import { Link, Redirect } from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import Viejito from "../../img/viejito.jpg";
 
 export default function Listing(props) {
   const styles = useStyles();
@@ -20,6 +26,8 @@ export default function Listing(props) {
       <Nav />
       <div>
         <h1 className={styles.title}>{details.titlePost}</h1>
+        <h2 className={styles.title}>Hernan Landau</h2>
+        
       </div>
       <div className={styles.body}>
         <div
@@ -31,18 +39,54 @@ export default function Listing(props) {
           }}>
           <img className={styles.image} src={ImageNotFound} alt='imagen' />
         </div>
-        <div style={{ textAlign: "left", paddingLeft: 10 }}>
-          <h2>{details.descriptionPost}.</h2>
+        <div className={styles.row}>
+          <div style={{ paddingRight: 10, paddingLeft: 10 }}>
+            <Avatar
+              style={{ height: 70, width: 70 }}
+              alt='Viejito granjero'
+              src={Viejito}
+            />
+          </div>
+          <div>
+            <div style={{ textAlign: "left", paddingLeft: 10 }}>
+              <h2>{details.descriptionPost}.</h2>
+            </div>
+            <div style={{ textAlign: "left", paddingLeft: 10 }}>
+              <h2>$ {details.price}</h2>
+            </div>
+          </div>
         </div>
-        <div style={{ textAlign: "left", paddingLeft: 10 }}>
-          <h2>$ {details.price}</h2>
-        </div>
-        <div style={{display:'flex',justifyContent:'center', marginTop:3,marginBottom:3}}>
-          <Button target="_blank" href='https://api.whatsapp.com/send?phone=50762250666' variant="contained" color="primary" onClick={() => {
-            // window.history.push('https://api.whatsapp.com/send?phone=50762250666')
-            // {`https://api.whatsapp.com/send?phone=${details.phoneNumber}`}
-            console.log('Que noris');
-          }}>Contactar</Button>
+        
+        {/* <div className={styles.row}>
+          <div style={{ paddingRight: 10, paddingLeft: 10 }}>
+            <Avatar
+              style={{ height: 70, width: 70 }}
+              alt='Viejito granjero'
+              src={Viejito}
+            />
+          </div>
+          <h2>Un pinta</h2>
+        </div> */}
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: 3,
+            marginBottom: 3
+          }}>
+          <Button
+            target='_blank'
+            href='https://api.whatsapp.com/send?phone=50762250666'
+            variant='contained'
+            color='primary'
+            onClick={() => {
+              // window.history.push('https://api.whatsapp.com/send?phone=50762250666')
+              // {`https://api.whatsapp.com/send?phone=${details.phoneNumber}`}
+              console.log("Que noris");
+            }}>
+            Contactar
+          </Button>
         </div>
         <Separator />
         <div style={{ padding: 20 }}>
