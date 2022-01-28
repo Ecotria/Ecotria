@@ -2,10 +2,17 @@ import { useEffect, useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { userActions } from "../../actions";
+import { makeStyles } from "@material-ui/styles";
 import Nav from "../../components/Navbar/Nav";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { StylesProvider } from "@material-ui/core";
+import { Avatar } from "@material-ui/core";
+import Viejito from "../../img/viejito.jpg";
+import Button from "@material-ui/core/Button";
+import Separator from "../../components/common/separator.component";
 
 const PostCreate = (props) => {
+  const styles = useStyles();
   const dispatch = useDispatch();
   const [values, setValues] = useState({
     titlePost: "",
@@ -169,7 +176,22 @@ const PostCreate = (props) => {
 
       {/*AQUI EMPIEZA FORMIK*/}
       <div>
-        <h1>Crear Anuncio</h1>
+        <div className={styles.title}>
+          <h1>Crear Anuncio</h1>
+        </div>
+        <Separator/>
+        <div className={styles.avatarRow}>
+          <div>
+            <Avatar
+              style={{ height: 70, width: 70 }}
+              alt="Viejito granjero"
+              src={Viejito}
+            />
+          </div>
+          <div>
+            <h2>Aristides Ábrego</h2>
+          </div>
+        </div>
         <Formik
           initialValues={{
             titlePost: "",
@@ -181,17 +203,17 @@ const PostCreate = (props) => {
             email: "",
             phoneNumber: "",
           }}
-        //   validate={(values) => {
-        //     const errors = {};
-        //     if (!values.email) {
-        //       errors.email = "Required";
-        //     } else if (
-        //       !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-        //     ) {
-        //       errors.email = "Invalid email address";
-        //     }
-        //     return errors;
-        //   }}
+          //   validate={(values) => {
+          //     const errors = {};
+          //     if (!values.email) {
+          //       errors.email = "Required";
+          //     } else if (
+          //       !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+          //     ) {
+          //       errors.email = "Invalid email address";
+          //     }
+          //     return errors;
+          //   }}
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
               alert(JSON.stringify(values, null, 2));
@@ -201,34 +223,45 @@ const PostCreate = (props) => {
         >
           {({ isSubmitting }) => (
             <Form>
-                <div className="form-group-input">
-            <label htmlFor="titlePost">Titulo</label>
-              <Field type="text" name="titlePost" />
-              <ErrorMessage name="titlePost" component="div" />
+              <div className={styles.formGroupInput}>
+                {/* <label htmlFor="titlePost">Titulo</label> */}
+                <Field placeholder="Título" type="text" name="titlePost" />
+                <ErrorMessage name="titlePost" component="div" />
               </div>
-              <div className="form-group-input">
-              <label htmlFor="catergory">Categoría</label>
-              <Field type="text" name="catergory" />
-              <ErrorMessage name="catergory" component="div" />
+              <div className={styles.formGroupInput}>
+                {/* <label htmlFor="catergory">Categoría</label> */}
+                <Field placeholder="Categoría" type="text" name="catergory" />
+                <ErrorMessage name="catergory" component="div" />
               </div>
-              <div className="form-group-input">
-              <label htmlFor="price">Precio</label>
-              <Field type="text" name="price" />
-              <ErrorMessage name="price" component="div" />
+              <div >
+                {/* <label htmlFor="price">Precio</label> */}
+                <Field className={styles.formGroupInput} placeholder="Precio" type="text" name="price" />
+                <ErrorMessage name="price" component="div" />
               </div>
-              <div className="form-group-input">
-              <label htmlFor="titlePost">Descripción</label>
-              <Field type="text" name="descriptionPost" />
-              <ErrorMessage name="descriptionPost" component="div" />
+              <div className={styles.formGroupInput}>
+                {/* <label htmlFor="titlePost">Descripción</label> */}
+                <Field
+                  placeholder="Descripción"
+                  type="text"
+                  name="descriptionPost"
+                />
+                <ErrorMessage name="descriptionPost" component="div" />
               </div>
-              <div className="form-group-input">
-              <label htmlFor="titlePost">Dirección</label>
-              <Field type="text" name="address" />
-              <ErrorMessage name="address" component="div" />
+              <div className={styles.formGroupInput}>
+                {/* <label htmlFor="titlePost">Dirección</label> */}
+                <Field placeholder="Dirección" type="text" name="address" />
+                <ErrorMessage name="address" component="div" />
               </div>
-              <button type="submit" disabled={isSubmitting}>
+              <Button
+                // className={styles.submitButton}
+                type="submit"
+                onClick={()=>console.log("Clickity")}
+                disabled={isSubmitting}
+                variant='contained'
+                color='primary'
+              >
                 Crear
-              </button>
+              </Button>
             </Form>
           )}
         </Formik>
@@ -236,6 +269,29 @@ const PostCreate = (props) => {
     </>
   );
 };
+
+const useStyles = makeStyles((theme) => ({
+  title: {
+    textAlign: "center",
+  },
+  avatarRow: {
+    display: "flex",
+    flexDirection: "row",
+  },
+  avatarColumn: {
+    // flex: "0.5",
+  },
+  formGroupInput: {
+    // border: "none",
+    backgroundColor: "transparent",
+    // outlineWidth: 0,
+    fontSize: 30,
+    // color: "white",
+    width: "100%",
+    textAlign: "left",
+  },
+  submitButton: {},
+}));
 
 const connectedPostCreatePage = withRouter(PostCreate);
 export { connectedPostCreatePage as PostCreate };

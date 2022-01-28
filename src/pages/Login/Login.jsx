@@ -167,7 +167,7 @@ export default function LoginPage() {
                   paddingLeft: "10px",
                   paddingTop: credentials.password.length > 0 ? "-10px" : "7px"
                 }}>
-                Contrase;a
+                Contraseña
               </label>
               <input
                 style={{ display: "flex", width: "100%", padding: 10 }}
