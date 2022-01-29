@@ -25,8 +25,10 @@ const PostCreate = (props) => {
     phoneNumber: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [currentStep, setCurrentStep] = useState(1);
 
   useEffect(() => {
+    setCurrentStep(1);
     const storedUser = JSON.parse(localStorage.getItem("ObjectData"));
     setValues({
       ...values,
@@ -175,97 +177,130 @@ const PostCreate = (props) => {
      */}
 
       {/*AQUI EMPIEZA FORMIK*/}
-      <div>
-        <div className={styles.title}>
-          <h1>Crear Anuncio</h1>
-        </div>
-        <Separator/>
-        <div className={styles.avatarRow}>
-          <div>
-            <Avatar
-              style={{ height: 70, width: 70 }}
-              alt="Viejito granjero"
-              src={Viejito}
-            />
+      {currentStep === 1 && (
+        <div>
+          <div className={styles.title}>
+            <h1>Crear Anuncio</h1>
           </div>
-          <div>
-            <h2>Aristides Ábrego</h2>
+          <Separator />
+          <div className={styles.avatarRow}>
+            <div>
+              <Avatar
+                style={{ height: 70, width: 70 }}
+                alt="Viejito granjero"
+                src={Viejito}
+              />
+            </div>
+            <div>
+              <h2>Aristides Ábrego</h2>
+            </div>
           </div>
+          <Formik
+            initialValues={{
+              titlePost: "",
+              suscriberID: "",
+              catergory: "",
+              price: "",
+              descriptionPost: "",
+              address: "",
+              email: "",
+              phoneNumber: "",
+            }}
+            //   validate={(values) => {
+            //     const errors = {};
+            //     if (!values.email) {
+            //       errors.email = "Required";
+            //     } else if (
+            //       !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+            //     ) {
+            //       errors.email = "Invalid email address";
+            //     }
+            //     return errors;
+            //   }}
+            onSubmit={(values, { setSubmitting }) => {
+              setTimeout(() => {
+                alert(JSON.stringify(values, null, 2));
+                setSubmitting(false);
+              }, 400);
+            }}
+          >
+            {({ isSubmitting }) => (
+              <Form>
+                <div>
+                  {/* <label htmlFor="titlePost">Titulo</label> */}
+                  <Field
+                    className={styles.formGroupInput}
+                    placeholder="Título"
+                    type="text"
+                    name="titlePost"
+                  />
+                  <ErrorMessage name="titlePost" component="div" />
+                </div>
+                <div>
+                  {/* <label htmlFor="catergory">Categoría</label> */}
+                  <Field
+                    className={styles.formGroupInput}
+                    placeholder="Categoría"
+                    type="text"
+                    name="catergory"
+                  />
+                  <ErrorMessage name="catergory" component="div" />
+                </div>
+                <div>
+                  {/* <label htmlFor="price">Precio</label> */}
+                  <Field
+                    className={styles.formGroupInput}
+                    placeholder="Precio"
+                    type="text"
+                    name="price"
+                  />
+                  <ErrorMessage name="price" component="div" />
+                </div>
+                <div>
+                  {/* <label htmlFor="titlePost">Descripción</label> */}
+                  <Field
+                    className={styles.formGroupInput}
+                    placeholder="Descripción"
+                    type="text"
+                    name="descriptionPost"
+                  />
+                  <ErrorMessage name="descriptionPost" component="div" />
+                </div>
+                <div>
+                  {/* <label htmlFor="titlePost">Dirección</label> */}
+                  <Field
+                    className={styles.formGroupInput}
+                    placeholder="Dirección"
+                    type="text"
+                    name="address"
+                  />
+                  <ErrorMessage name="address" component="div" />
+                </div>
+                <div style={{display: "flex", justifyContent: "center"}}>
+                <Button
+                  // className={styles.submitButton}
+                  type="submit"
+                  onClick={() => {
+                    console.log("Clickity");
+                    setCurrentStep(2);
+                  }}
+                  disabled={isSubmitting}
+                  variant="contained"
+                  color="primary"
+                >
+                  Crear
+                </Button>
+                </div>
+              </Form>
+            )}
+          </Formik>
         </div>
-        <Formik
-          initialValues={{
-            titlePost: "",
-            suscriberID: "",
-            catergory: "",
-            price: "",
-            descriptionPost: "",
-            address: "",
-            email: "",
-            phoneNumber: "",
-          }}
-          //   validate={(values) => {
-          //     const errors = {};
-          //     if (!values.email) {
-          //       errors.email = "Required";
-          //     } else if (
-          //       !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-          //     ) {
-          //       errors.email = "Invalid email address";
-          //     }
-          //     return errors;
-          //   }}
-          onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              setSubmitting(false);
-            }, 400);
-          }}
-        >
-          {({ isSubmitting }) => (
-            <Form>
-              <div className={styles.formGroupInput}>
-                {/* <label htmlFor="titlePost">Titulo</label> */}
-                <Field placeholder="Título" type="text" name="titlePost" />
-                <ErrorMessage name="titlePost" component="div" />
-              </div>
-              <div className={styles.formGroupInput}>
-                {/* <label htmlFor="catergory">Categoría</label> */}
-                <Field placeholder="Categoría" type="text" name="catergory" />
-                <ErrorMessage name="catergory" component="div" />
-              </div>
-              <div >
-                {/* <label htmlFor="price">Precio</label> */}
-                <Field className={styles.formGroupInput} placeholder="Precio" type="text" name="price" />
-                <ErrorMessage name="price" component="div" />
-              </div>
-              <div className={styles.formGroupInput}>
-                {/* <label htmlFor="titlePost">Descripción</label> */}
-                <Field
-                  placeholder="Descripción"
-                  type="text"
-                  name="descriptionPost"
-                />
-                <ErrorMessage name="descriptionPost" component="div" />
-              </div>
-              <div className={styles.formGroupInput}>
-                {/* <label htmlFor="titlePost">Dirección</label> */}
-                <Field placeholder="Dirección" type="text" name="address" />
-                <ErrorMessage name="address" component="div" />
-              </div>
-              <Button
-                // className={styles.submitButton}
-                type="submit"
-                onClick={()=>console.log("Clickity")}
-                disabled={isSubmitting}
-                variant='contained'
-                color='primary'
-              >
-                Crear
-              </Button>
-            </Form>
-          )}
-        </Formik>
-      </div>
+      )}
+      {currentStep === 2 && (
+        <div>
+          <h1>IMAGEN UPLOAD</h1>
+        </div>
+      )}
     </>
   );
 };

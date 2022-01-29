@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../../actions/index";
 
 //MUI
-import Hidden from '@material-ui/core/Hidden';
+import Hidden from "@material-ui/core/Hidden";
 import AppBar from "@material-ui/core/AppBar";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Button } from "@material-ui/core";
@@ -18,6 +18,8 @@ import ForumIcon from "@material-ui/icons/Forum";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Container } from "@material-ui/core";
+import Avatar from "@material-ui/core/Avatar";
+import Viejito from "../../img/viejito.jpg";
 
 import SearchBar from "../Search Bar/SearchBar";
 import logo from "./Ecotria-Logo-NavbarIcon.png";
@@ -25,7 +27,7 @@ import { authentication } from "../../reducers/authentication.reducer";
 
 const NavigateBar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { loggedIn } = useSelector(state => state.authentication);
+  const { loggedIn } = useSelector((state) => state.authentication);
   const toggle = () => setIsOpen(!isOpen);
   const { history, location, match } = props;
   const classes = useStyles();
@@ -161,13 +163,20 @@ const NavigateBar = (props) => {
             color="inherit"
             aria-label="menu"
           >
-            <MenuIcon /> 
+            <MenuIcon />
           </IconButton>
 
           {loggedIn ? (
-            <Button onClick={navLogout} color="inherit">
-              Cerrar Sesión
-            </Button>
+            <>
+              <Avatar
+                style={{ height: 40, width: 40 }}
+                alt="Viejito granjero"
+                src={Viejito}
+              ></Avatar>
+              <Button onClick={navLogout} color="inherit">
+                Cerrar Sesión
+              </Button>
+            </>
           ) : (
             <Button color="inherit">Iniciar Sesión</Button>
           )}
@@ -186,15 +195,14 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   navButtonsContainer: {
-    position: 'absolute', 
-    left: '50%', 
-    top: '50%',
-    transform: 'translate(-50%, -50%)'
+    position: "absolute",
+    left: "50%",
+    top: "50%",
+    transform: "translate(-50%, -50%)",
   },
   title: {
     flexGrow: 1,
     marginLeft: theme.spacing(2),
-
   },
   subtitle: {
     flexGrow: 1,
