@@ -1,0 +1,9 @@
+/** @format */
+
+.MuiGrid-spacing-xs-4 > .MuiGrid-item {
+  padding: 0px !important;
+}
+
+.feed {
+  width: 95%;
+}

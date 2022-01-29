@@ -79,7 +79,9 @@ function ShortPostFeed() {
           const laP = arrayImage[index]
           return (
             <Grid item xs={12} sm={3} className={classes.cardContainer} key={index}>
-              <Card className={classes.root} onClick={() => postDtails(post._id)} >
+              <Card
+               
+                  className={classes.root} onClick={() => postDtails(post._id)} >
                 <CardHeader
                   avatar={
                     <Avatar aria-label="recipe" className={classes.avatar}>
@@ -95,7 +97,9 @@ function ShortPostFeed() {
                   title="Industria Agrícola"
                 />
                 <CardContent>
-                  <Typography variant="body2" color="textSecondary" component="p">
+                  <Typography style={{
+                    paddingLeft: '10px',
+                  }} variant="body2" color="textSecondary" component="p">
                     <h3>{post.descriptionPost}</h3>
                     <h1>${post.price ? post.price : 0}</h1>
                   </Typography>
@@ -127,7 +131,8 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     // marginRight: 10,
     // marginBottom: 10,
-    backgroundColor: '#FFFFFF'
+    backgroundColor: '#FFFFFF',
+    borderBottom: "2px solid black"
   },
   gridRoot:{
     flexGrow:1,

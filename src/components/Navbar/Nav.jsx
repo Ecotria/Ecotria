@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { useState } from "react";
 import { Link, withRouter, Redirect } from "react-router-dom";
 import "./Nav.css";
@@ -24,6 +26,7 @@ import Viejito from "../../img/viejito.jpg";
 import SearchBar from "../Search Bar/SearchBar";
 import logo from "./Ecotria-Logo-NavbarIcon.png";
 import { authentication } from "../../reducers/authentication.reducer";
+import LogoutIcon from '@material-ui/icons/ExitToApp';
 
 const NavigateBar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -112,74 +115,72 @@ const NavigateBar = (props) => {
     //   </AppBar>
     // </div>
     <div className={classes.root}>
-      <AppBar position="fixed">
-        <Toolbar>
-          <div className="nav-left">
+      <AppBar position='fixed'>
+        <Toolbar style={{ justifyContent: "space-between", display: "flex" }}>
+          <div className='nav-left'>
             <a href={"/"}>
-              <img src={logo} width="40" height="40" />
+              <img src={logo} width='40' height='40' />
             </a>
             {/* +<SearchBar /> */}
           </div>
 
-          <Typography variant="h4" className={classes.title}>
-            Ecotria
-          </Typography>
-
           <Hidden smDown>
+            <Typography variant='h4' className={classes.title}>
+              Ecotria
+            </Typography>
             <div className={classes.navButtonsContainer}>
-              <div title="Market" className="tooltip">
+              <div title='Market' className='tooltip'>
                 <a href={"/"}>
-                  <HomeIcon fontSize="large" />
-                  <span class="tooltiptext">Mercado</span>
+                  <HomeIcon fontSize='large' />
+                  <span class='tooltiptext'>Mercado</span>
                 </a>
               </div>
 
-              <div title="Agregar Publicación" className="tooltip">
-                <a href="/postcreate">
-                  <LibraryAddIcon fontSize="large" />
-                  <span class="tooltiptext">Agregar Publicación</span>
+              <div title='Agregar Publicación' className='tooltip'>
+                <a href='/postcreate'>
+                  <LibraryAddIcon fontSize='large' />
+                  <span class='tooltiptext'>Agregar Publicación</span>
                 </a>
               </div>
 
-              <div title="Mis Publicaciones" className="tooltip">
+              <div title='Mis Publicaciones' className='tooltip'>
                 <a href={"/"}>
-                  <ListAltIcon fontSize="large" />
-                  <span class="tooltiptext">Mis Publicaciones</span>
+                  <ListAltIcon fontSize='large' />
+                  <span class='tooltiptext'>Mis Publicaciones</span>
                 </a>
               </div>
 
-              <div title="Foro" className="tooltip">
+              <div title='Foro' className='tooltip'>
                 <a href={"/"}>
-                  <ForumIcon fontSize="large" />
-                  <span class="tooltiptext">Foro</span>
+                  <ForumIcon fontSize='large' />
+                  <span class='tooltiptext'>Foro</span>
                 </a>
               </div>
             </div>
           </Hidden>
+          <div style={{display:'flex'}}>
+            {/* <IconButton
+              edge='end'
+              className={classes.menuButton}
+              color='inherit'
+              aria-label='menu'>
+              <MenuIcon />
+            </IconButton> */}
 
-          <IconButton
-            edge="end"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
-            <MenuIcon />
-          </IconButton>
-
-          {loggedIn ? (
-            <>
-              <Avatar
-                style={{ height: 40, width: 40 }}
-                alt="Viejito granjero"
-                src={Viejito}
-              ></Avatar>
-              <Button onClick={navLogout} color="inherit">
-                Cerrar Sesión
-              </Button>
-            </>
-          ) : (
-            <Button color="inherit">Iniciar Sesión</Button>
-          )}
+            {loggedIn ? (
+              <>
+                <Avatar
+                  style={{ height: 40, width: 40 }}
+                  alt='Viejito granjero'
+                  src={Viejito}></Avatar>
+                <Button onClick={navLogout} color='inherit'>
+                  <LogoutIcon fontSize="large" />
+                </Button>
+              </>
+            ) : (
+              <Button color='inherit'>Iniciar Sesión</Button>
+            )}
+          </div>
         </Toolbar>
       </AppBar>
       <div className={classes.offset} />
@@ -189,26 +190,26 @@ const NavigateBar = (props) => {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(2)
   },
   navButtonsContainer: {
     position: "absolute",
     left: "50%",
     top: "50%",
-    transform: "translate(-50%, -50%)",
+    transform: "translate(-50%, -50%)"
   },
   title: {
     flexGrow: 1,
-    marginLeft: theme.spacing(2),
+    marginLeft: theme.spacing(2)
   },
   subtitle: {
     flexGrow: 1,
-    fontSize: 15,
+    fontSize: 15
   },
-  offset: theme.mixins.toolbar,
+  offset: theme.mixins.toolbar
 }));
 
 export default withRouter(NavigateBar);

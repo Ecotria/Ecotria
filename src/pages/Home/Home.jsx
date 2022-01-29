@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { Redirect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -14,7 +16,7 @@ const HomePage = () => {
       <div>
         <Nav />
       </div>
-      <div className="home">
+      <div className='home'>
         {/* <div className="sidebar">
           <div className="sidebar-row"><Avatar/>User name goes here</div>
           <div className="sidebar-row">
@@ -27,26 +29,32 @@ const HomePage = () => {
           <div className="sidebar-row">Noticias</div>
         </div> */}
 
-        <div className="feed">
-          <div style={{ display: "flex", flexDirection: "row" }}>
+        <div className='feed'>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              padding: 10,
+              width: "110%",
+              paddingLeft:30
+            }}>
             <Button
-              color="primary"
-              variant="contained"
+              color='primary'
+              variant='contained'
               onClick={() => {
-                <Redirect to="/postcreate" />;
+                <Redirect to='/postcreate' />;
                 history.push("/postcreate");
-              }}
-            >
+              }}>
               Vender
             </Button>
             <Button
-              color="primary"
-              variant="contained"
+              color='primary'
+              variant='contained'
               onClick={() => {
-                <Redirect to="/postcreate" />;
+                <Redirect to='/postcreate' />;
                 history.push("/postcreate");
-              }}
-            >
+              }}>
               Mis Listados
             </Button>
           </div>
