@@ -16,11 +16,20 @@ import Nav from "../Navbar/Nav";
 import Separator from "../common/separator.component";
 import Button from "@material-ui/core/Button";
 import Viejito from "../../img/viejito.jpg";
+import Sandia from "../../img/sandia.jpeg";
+import Ayote from "../../img/ayote.jpg";
+import Pepino from "../../img/pepito.jpg";
+import Tomate from "../../img/tomate.jpg";
+import Zanahoria from "../../img/Zanahoria.jpg";
 
 export default function Listing(props) {
   const styles = useStyles();
   const details = useSelector((state) => state.users.postDetails);
-  console.log("Details", details);
+
+  var arrayImage = [ImageNotFound, Sandia, Ayote, Pepino,Tomate, Zanahoria];
+  var rand = Math.floor(Math.random()*arrayImage.length);
+  var ImageRender = arrayImage[rand];
+  console.log('ImageRender', ImageRender);
   return (
     <div>
       <Nav />
@@ -37,7 +46,7 @@ export default function Listing(props) {
             alignItems: "center",
             marginTop: "10px"
           }}>
-          <img className={styles.image} src={ImageNotFound} alt='imagen' />
+          <img className={styles.image} src={ImageRender} alt='imagen' />
         </div>
         <div className={styles.row}>
           <div style={{ paddingRight: 10, paddingLeft: 10 }}>

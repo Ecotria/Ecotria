@@ -123,12 +123,12 @@ export default function LoginPage() {
               <label
                 form='email'
                 style={{
-                  display: "block",
                   color: credentials.email.length > 0 ? "black" : "white",
                   fontWeight: "bold",
                   fontSize: credentials.email.length > 0 ? 18 : 20,
                   position:
                     credentials.email.length > 0 ? "relative" : "absolute",
+                  display: credentials.email.length > 0 ? "block" : "none",
                   paddingLeft: "10px",
                   paddingTop: credentials.email.length > 0 ? "-10px" : "7px"
                 }}>
@@ -148,6 +148,7 @@ export default function LoginPage() {
                 autoComplete='email'
                 autoFocus
                 className={classes.TextField}
+                placeholder='Correo'
                 // InputLabelProps={{
                 //   style: {
                 //     color: 'white',
@@ -158,7 +159,7 @@ export default function LoginPage() {
               <label
                 form='password'
                 style={{
-                  display: "block",
+                  display: credentials.password.length > 0 ? "block" : "none",
                   color: credentials.password.length > 0 ? "black" : "white",
                   fontWeight: "bold",
                   fontSize: credentials.password.length > 0 ? 18 : 20,
@@ -183,6 +184,7 @@ export default function LoginPage() {
                 value={credentials.password}
                 // autoComplete='current-password'
                 className={classes.TextField}
+                placeholder='Contraseña'
                 // InputLabelProps={{
                 //   style: {
                 //     color: "white"
