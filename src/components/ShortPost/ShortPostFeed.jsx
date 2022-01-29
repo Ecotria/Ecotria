@@ -23,6 +23,103 @@ import { Container } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
 import { getPostDetail } from '../../actions';
 
+import Sandia from "../../img/sandia.jpeg";
+import Ayote from "../../img/ayote.jpg";
+import Pepino from "../../img/pepito.jpg";
+import Tomate from "../../img/tomate.jpg";
+import Zanahoria from "../../img/Zanahoria.jpg";
+import Papas from "../../img/papas.jpeg";
+
+function ShortPostFeed() {
+  const classes = useStyles();
+  const [expanded, setExpanded] = useState(false);
+  const [currentPage, setPageNumber] = useState(1);
+  const [postsLimit, setPostsLimit] = useState(12);
+  const [post, setPost] = useState([]);
+  let total = localStorage.getItem('Total Posts');
+  const paginationIndex = Math.ceil(total / 8);
+
+  const dispatch = useDispatch();
+  useEffect( () => {
+    const fetchPost = async () =>{
+      const result = await userService.getPostPage(currentPage,postsLimit);
+      setPost(result.data.data);
+    };
+    fetchPost();
+  },[currentPage]);
+
+  var arrayImage = [Papas, Sandia, Ayote, Pepino,Tomate, Zanahoria];
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
+
+  const handlePagination = (event, value) =>{
+    setPageNumber(value);
+  };
+
+  const postDtails = async (item) => {
+    console.log('first item', item);
+    dispatch(getPostDetail(item))
+  }
+
+  if(post === null){
+    return (
+      <div className="nulldata">
+        ...Loading...
+      </div>
+    )
+  }
+
+  else{
+
+    return  (
+      <Grid container spacing={4} justifyContent="center" className={classes.gridRoot}>
+        {post ? post.map((post, index) => {
+          const laP = arrayImage[index]
+          return (
+            <Grid item xs={12} sm={3} className={classes.cardContainer} key={index}>
+              <Card className={classes.root} onClick={() => postDtails(post._id)} >
+                <CardHeader
+                  avatar={
+                    <Avatar aria-label="recipe" className={classes.avatar}>
+                      Eco
+                    </Avatar>
+                  }
+                  title={post.titlePost}
+                  subheader={post.catergory}
+                />
+                <CardMedia
+                  className={classes.media}
+                  image={laP}
+                  title="Industria Agrícola"
+                />
+                <CardContent>
+                  <Typography variant="body2" color="textSecondary" component="p">
+                    <h3>{post.descriptionPost}</h3>
+                    <h1>${post.price ? post.price : 0}</h1>
+                  </Typography>
+                </CardContent>
+              
+              </Card>
+  
+            </Grid>
+          )
+        })
+      : <div>Esto ta vacio</div>
+      }  
+      </Grid>
+   
+    )
+
+  }
+
+  
+            
+}
+   
+export default ShortPostFeed;
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -59,95 +156,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: green[500],
   }
 }));
-
-
-
-function ShortPostFeed() {
-  const classes = useStyles();
-  const [expanded, setExpanded] = useState(false);
-  const [currentPage, setPageNumber] = useState(1);
-  const [postsLimit, setPostsLimit] = useState(12);
-  const [post, setPost] = useState([]);
-  let total = localStorage.getItem('Total Posts');
-  const paginationIndex = Math.ceil(total/8);
-  const dispatch = useDispatch();
-  useEffect( () => {
-    const fetchPost = async () =>{
-      const result = await userService.getPostPage(currentPage,postsLimit);
-      setPost(result.data.data);
-    };
-    fetchPost();
-  },[currentPage]);
-
-
- 
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
-  const handlePagination = (event, value) =>{
-    setPageNumber(value);
-  };
-
-  const postDtails = async (item) => {
-    console.log('first item', item);
-    dispatch(getPostDetail(item))
-  }
-
-  if(post === null){
-    return (
-      <div className="nulldata">
-        ...Loading...
-      </div>
-    )
-  }
-
-  else{
-
-    return  (
-      <Grid container spacing={4} justifyContent="center" className={classes.gridRoot}>
-      { post? post.map((post, index) => (
-        <Grid item xs={12} sm={3} className={classes.cardContainer} key={index}>
-            <Card className={classes.root} onClick={()=> postDtails(post._id)} >
-              <CardHeader
-                avatar={
-                  <Avatar aria-label="recipe" className={classes.avatar}>
-                    Eco
-                  </Avatar>
-                }
-                title={post.titlePost}
-                subheader={post.catergory}
-              />
-              <CardMedia
-                className={classes.media}
-                image={post.Images}
-                title="Industria Agrícola"
-              />
-              <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">
-                <h3>{post.descriptionPost}</h3>
-                <h1>${post.price? post.price:0}</h1>
-                </Typography>
-              </CardContent>
-              
-          </Card>
-  
-        </Grid>
-      ))
-      : <div>Esto ta vacio</div>
-      }  
-      </Grid>
-   
-    )
-
-  }
-
-  
-            
-}
-   
-export default ShortPostFeed;
 
 
 {/* <div className="pagination">
