@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { Redirect } from "react";
+import React, { Redirect, useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import ShortPostFeed from "../../components/ShortPost/ShortPostFeed";
@@ -11,12 +11,14 @@ import { Button } from "@material-ui/core";
 import { history } from "../../helpers";
 
 const HomePage = () => {
+  const listTitle = [ "Categorias", "Subcategorias", "Rubros",];
+  const [titleIndex, setTitleIndex] = useState(0);
   return (
     <>
       <div>
         <Nav />
       </div>
-      <div className='home'>
+      <div className="home">
         {/* <div className="sidebar">
           <div className="sidebar-row"><Avatar/>User name goes here</div>
           <div className="sidebar-row">
@@ -29,7 +31,7 @@ const HomePage = () => {
           <div className="sidebar-row">Noticias</div>
         </div> */}
 
-        <div className='feed'>
+        <div className="feed">
           <div
             style={{
               display: "flex",
@@ -37,28 +39,34 @@ const HomePage = () => {
               justifyContent: "space-between",
               padding: 10,
               width: "110%",
-              paddingLeft:30
-            }}>
+              paddingLeft: 30,
+            }}
+          >
             <Button
-              color='primary'
-              variant='contained'
+              color="primary"
+              variant="contained"
               onClick={() => {
-                <Redirect to='/postcreate' />;
+                <Redirect to="/postcreate" />;
                 history.push("/postcreate");
-              }}>
-              Vender
+              }}
+            >
+              Publicar
             </Button>
             <Button
-              color='primary'
-              variant='contained'
+              color="primary"
+              variant="contained"
               onClick={() => {
-                <Redirect to='/postcreate' />;
+                <Redirect to="/postcreate" />;
                 history.push("/postcreate");
-              }}>
-              Mis Listados
+              }}
+            >
+              Mis Anuncios
             </Button>
           </div>
-          <ShortPostFeed />
+          <div>
+            <h2 style={{fontSize: 40}}>{listTitle[titleIndex]}</h2>
+          </div>
+          <ShortPostFeed  changeScreenType={setTitleIndex} currentScreen={titleIndex}/>
         </div>
 
         {/* <div className="ad">
